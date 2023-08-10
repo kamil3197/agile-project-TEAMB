@@ -23,6 +23,13 @@
         <section id="form" class="bg-light py-3">
             <div class="container">
                 <h2>Enter job role details</h2>
+                {% if successmessage %}
+                <div class="alert alert-success" role="alert">{{successmessage}}</div>
+                {% endif %}
+
+                {% if errormessage %}
+                <div class="alert alert-danger" role="alert">{{errormessage}}</div>
+                {% endif %}
                 <form action="/admin/job-roles" method="post">
                     <div class="form-group">
                         <label for="title">Job role title</label>
@@ -36,21 +43,8 @@
                         <label for="sharepoint_link">Sharepoint link</label>
                         <input type="text" id="sharepoint_link" name="sharepoint_link" class="form-control" value="{{ sharepoint_link }}" required>
                     </div>
-                    <button type="submit" id="submitButton" onclick="showPrompt()">Submit</button>
+                    <button type="submit" id="submitButton">Submit</button>
                 </form>
-                {% if errormessage %} 
-                <script>
-                    function showPrompt() {
-                            alert("Job role has NOT been added succesfully");
-                    }
-                </script>                
-                {% else %}
-                <script>
-                    function showPrompt() {
-                            alert("Job role has been added succesfully");
-                    }
-                </script> 
-                {% endif %}
             </div>
         </section>  
         <footer class="bg-dark text-light py-3">

@@ -2,6 +2,8 @@ import { Application, Request, Response } from 'express';
 import { JobRole } from '../model/jobRole.js';
 import JobRoleService from '../service/jobRolesService.js';
 import { AddJobRole } from '../model/addJobRole.js';
+import xss from 'xss';
+
 
 export default class JobRolesController {
   private jobRoleServiceClass = new JobRoleService();
@@ -27,8 +29,15 @@ export default class JobRolesController {
         const jobRoleService = this.jobRoleServiceClass;
 
         try {
-            await jobRoleService.createJobRoles(data);          
-        } catch (e) {
+          if (data.title && data.summary && data.sharepoint_link !== undefined) {
+          const sanitizedData: AddJobRole = {
+            title: xss(data.title),
+            summary: xss(data.summary),
+            sharepoint_link: xss(data.sharepoint_link)
+          };
+            await jobRoleService.createJobRoles(sanitizedData);
+            res.locals.successmessage = 'Success to add job role';
+        }} catch (e) {
           res.locals.errormessage = 'Failed to add job role';
         };
         res.render("add-job-roles");
