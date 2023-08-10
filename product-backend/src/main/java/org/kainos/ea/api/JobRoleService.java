@@ -32,17 +32,10 @@ public class JobRoleService {
             OptionalInt roleID = jobRoleDao.createRole(addJobRole);
             OptionalInt specID = jobRoleDao.createSpec(addJobRole);
 
-            if (roleID.isPresent() && specID.isPresent()) {
-                // Do some further processing if needed
-                return roleID.getAsInt();
-            } else {
-                throw new FailedToCreateJobRoleException();
-            }
+            return roleID.orElseThrow(() -> new FailedToCreateJobRoleException());
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            throw new FailedToCreateJobRoleException();
+            throw new SQLException();
         }
     }
-
-
 }

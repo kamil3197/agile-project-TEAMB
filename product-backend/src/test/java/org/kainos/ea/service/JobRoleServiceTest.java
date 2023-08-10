@@ -10,7 +10,6 @@ import org.kainos.ea.db.JobRoleDao;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,5 +50,6 @@ public class JobRoleServiceTest {
         List<JobRole> result = jobRoleService.getAllJobRoles();
         assertEquals(result, expectedResult);
     }
+
 
 }
