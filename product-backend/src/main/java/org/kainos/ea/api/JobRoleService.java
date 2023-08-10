@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.OptionalInt;
 
 public class JobRoleService {
-    private JobRoleDao jobRoleDao;
+    private static JobRoleDao jobRoleDao;
 
     public JobRoleService(JobRoleDao jobRoleDao) {
         this.jobRoleDao = jobRoleDao;
@@ -26,19 +26,23 @@ public class JobRoleService {
             throw new FailedToGetJobRolesException();
         }
     }
-    public int createJobRole(AddJobRole addJobRole) throws FailedToCreateJobRoleException, SQLException {
-        try {
-            OptionalInt id = jobRoleDao.createRole(addJobRole);
-            OptionalInt id = jobRoleDao.createSpec(addJobRole);
 
-            return id.orElseThrow(() -> new FailedToCreateJobRoleException());
+    public static int createJobRole(AddJobRole addJobRole) throws FailedToCreateJobRoleException, SQLException {
+        try {
+            OptionalInt roleID = jobRoleDao.createRole(addJobRole);
+            OptionalInt specID = jobRoleDao.createSpec(addJobRole);
+
+            if (roleID.isPresent() && specID.isPresent()) {
+                // Do some further processing if needed
+                return roleID.getAsInt();
+            } else {
+                throw new FailedToCreateJobRoleException();
+            }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            throw new SQLException();
+            throw new FailedToCreateJobRoleException();
         }
-
     }
-
 
 
 }

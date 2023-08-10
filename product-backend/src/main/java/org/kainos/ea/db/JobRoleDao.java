@@ -45,14 +45,15 @@ public class JobRoleDao {
         }
         return OptionalInt.empty();
     }
+
     public OptionalInt createSpec(AddJobRole addJobRole) throws SQLException {
         Connection c = databaseConnector.getConnection();
 
-        String insertStatement = "INSERT INTO Specifications (summary, sharepoint_link) VALUES (?, ?, ?)";
+        String insertStatement = "INSERT INTO Specifications (summary, sharepoint_link) VALUES (?, ?)";
         PreparedStatement st = c.prepareStatement(insertStatement, Statement.RETURN_GENERATED_KEYS);
 
-        st.setString(2, addJobRole.getSummary());
-        st.setString(3, addJobRole.getLink());
+        st.setString(1, addJobRole.getSummary());
+        st.setString(2, addJobRole.getLink());
 
         st.executeUpdate();
 
@@ -63,5 +64,6 @@ public class JobRoleDao {
         }
         return OptionalInt.empty();
     }
+
 
 }

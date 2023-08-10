@@ -1,4 +1,5 @@
 package org.kainos.ea.resources;
+
 import io.swagger.annotations.Api;
 import org.kainos.ea.api.JobRoleService;
 import org.kainos.ea.cli.AddJobRole;
@@ -6,14 +7,13 @@ import org.kainos.ea.client.FailedToCreateJobRoleException;
 import org.kainos.ea.client.FailedToGetJobRolesException;
 import org.kainos.ea.db.JobRoleDao;
 
+import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
-import java.net.URI;
 import java.sql.SQLException;
 
 @Api("Job Roles API")
@@ -36,17 +36,20 @@ public class JobRoleController {
     @POST
     @Path("/admin/job-roles")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createJobRole(AddJobRole addJobRole) throws SQLException, FailedToCreateJobRoleException{
-
+    public Response createJobRole(@Valid AddJobRole addJobRole) {
         try {
-            int BandId = jobRoleService.createJobRole(addJobRole);
-            URI location = UriBuilder.fromPath("/admin/band/" + BandId).build();
-
-            return Response.created(location).build();
+            int createdRoleId = JobRoleService.createJobRole(addJobRole);
+            return Response.status(Response.Status.CREATED)
+                    .entity("Job role created with ID: " + createdRoleId)
+                    .build();
         } catch (FailedToCreateJobRoleException e) {
-            System.err.println(e.getMessage());
-
-            return Response.serverError().build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Failed to create job role")
+                    .build();
+        } catch (SQLException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Database error while creating job role")
+                    .build();
         }
     }
 }
