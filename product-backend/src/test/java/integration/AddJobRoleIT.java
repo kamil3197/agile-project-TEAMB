@@ -32,7 +32,7 @@ public class AddJobRoleIT {
                 "tomeweqqweqweqweweqqweeqweqwqweqwee" +
                         "wqewqeqweqweqweqweqweqweqwweqq" +
                         "weqweeqwweqeqweqwqweeqwqweqweeqwqweqweweqqwe" +
-                        "qweqweeqwqweqweqweqweqweeqwqwekk",
+                        "qweqweeqwqweqweqweqweqweeqwqwekkasdsadasdasdasdsasaasdasdsaasdasd",
                 "test",
                 "Bloggs"
         );
@@ -40,6 +40,6 @@ public class AddJobRoleIT {
                 .contentType(ContentType.JSON)
                 .body(addJobRole)
                 .post("http://localhost:8080/api/admin/job-roles");
-        assertEquals(500, response.getStatusCode());
+        assertEquals(400, response.getStatusCode());
     }
 }

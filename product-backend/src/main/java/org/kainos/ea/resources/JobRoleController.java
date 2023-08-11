@@ -43,11 +43,11 @@ public class JobRoleController {
                     .entity("Job role created with ID: " + createdRoleId)
                     .build();
         } catch (FailedToCreateJobRoleException e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response.status(Response.Status.BAD_REQUEST)
                     .entity("Failed to create job role")
                     .build();
         } catch (SQLException e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+            return Response.status(Response.Status.BAD_REQUEST)
                     .entity("Database error while creating job role")
                     .build();
         }

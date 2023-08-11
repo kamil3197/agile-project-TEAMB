@@ -27,17 +27,17 @@ export default class JobRolesController {
       const jobRoleService = this.jobRoleServiceClass;
 
       try {
-        if (data.title && data.summary && data.sharepoint_link !== undefined) {
+        if (data.title && data.summary && data.sharepointLink !== undefined) {
           const sanitizedData: AddJobRole = {
             title: xss(data.title),
             summary: xss(data.summary),
-            sharepoint_link: xss(data.sharepoint_link),
+            sharepointLink: xss(data.sharepointLink),
           };
           await jobRoleService.createJobRoles(sanitizedData);
-          res.locals.successmessage = 'Success to add job role';
+          res.locals.successMessage = 'Successfuly added job role';
         }
       } catch (e) {
-        res.locals.errormessage = 'Failed to add job role';
+        res.locals.errorMessage = e;
       }
       res.render('add-job-roles');
     });
