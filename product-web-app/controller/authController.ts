@@ -2,6 +2,7 @@ import { Application } from 'express';
 import User from '../model/register.js';
 import AuthService from '../service/authService.js';
 import Login from '../model/login.js';
+import { request } from 'http';
 
 function authController(app: Application) {
   app.get('/auth/register', async (req, res) => {
@@ -39,6 +40,7 @@ function authController(app: Application) {
         maxAge: 3600000,
       });
 
+
       res.redirect('/home');
     } catch (error) {
       res.locals.errormessage = error instanceof Error ? error.message : String(error);
@@ -47,7 +49,7 @@ function authController(app: Application) {
   });
 
   app.get('/home', async (req, res) => {
-    res.render('home');
+    res.render('home', { title: 'Home Page' });
   });
 }
 
