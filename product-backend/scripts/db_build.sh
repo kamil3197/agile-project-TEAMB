@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/bash
+
 DB_PORT=3306
 echo "************* connection opened *************"
 
