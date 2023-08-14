@@ -54,4 +54,4 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
         run: | 
           chmod +x ./db_build.sh
-        ./db_build.sh
+          ./db_build.sh
