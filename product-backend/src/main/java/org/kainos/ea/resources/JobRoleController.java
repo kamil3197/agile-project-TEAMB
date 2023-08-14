@@ -39,7 +39,7 @@ public class JobRoleController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createJobRole(@Valid AddJobRole addJobRole) {
         try {
-            OptionalInt createdRoleId = JobRoleService.createJobRole(addJobRole);
+            OptionalInt createdRoleId = jobRoleService.createJobRole(addJobRole);
             return Response.status(Response.Status.CREATED)
                     .entity("Job role created with ID: " + createdRoleId)
                     .build();

@@ -5,26 +5,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AddJobRole {
 
-    private String role_title;
+    private String roleTitle;
     private String summary;
     private String link;
 
     @JsonCreator
     public AddJobRole(
-            @JsonProperty("role_title") String role_title,
+            @JsonProperty("roleTitle") String roleTitle,
             @JsonProperty("summary") String summary,
             @JsonProperty("link") String link) {
-        this.role_title = role_title;
+        this.roleTitle = roleTitle;
         this.summary = summary;
         this.link = link;
     }
 
-    public String getRole_title() {
-        return role_title;
+    public String getRoleTitle() {
+        return roleTitle;
     }
 
-    public void setRole_title(String role_title) {
-        this.role_title = role_title;
+    public void setRoleTitle(String roleTitle) {
+        this.roleTitle = roleTitle;
     }
 
     public String getSummary() {
