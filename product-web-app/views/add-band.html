@@ -1,60 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset='utf-8'>
-    <title>add Band</title>
-    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<body>
-    <header class="bg-dark text-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 py-3">
-                    <h1>Band</h1>
-                    <nav>
-                        <ul class="nav">
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main class="container mt-4">
-        <section id="form" class="bg-light py-3">
-            <div class="container">
-                <h2>Enter Band details</h2>
+{% include "./base/header.html" %}
 
-                {% if successmessage %}
-                <div class="alert alert-success" role="alert">{{successmessage}}</div>
-                {% endif %}
+<div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
+  <section id="form" class="mt-4">
+    <h2>Enter Band details</h2>
 
+    {% if successmessage %}
+    <div class="alert alert-success" role="alert">{{successmessage}}</div>
+    {% endif %} {% if errormessage %}
+    <div class="alert alert-danger" role="alert">{{errormessage}}</div>
+    {% endif %}
 
-                {% if errormessage %}
-                <div class="alert alert-danger" role="alert">{{errormessage}}</div>
-                {% endif %}
-            
-                <form action="/admin/add-band" method="post">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" value="{{ name }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="level">Level</label>
-                        <input type="number" id="level" name="level" class="form-control" value="{{ level }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="responsibilities">Responsibilities</label>
-                        <input type="text" id="responsibilities" name="responsibilities" class="form-control" value="{{ responsibilities }}" required>
-                    </div>
-                    <button type="submit" id="submitButton">Submit</button>
-                </form>
-            </div>
-        </section>  
-        <footer class="bg-dark text-light py-3">
-            <div class="container text-center">
-                <p>&copy; Company Management Platform 2023</p>   
-            </div>
-        </footer>
-    </main>
-</body>
-</html>
+    <form action="/admin/add-band" method="post">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" value="{{ name }}" required />
+      </div>
+      <div class="form-group">
+        <label for="level">Level</label>
+        <input type="number" id="level" name="level" class="form-control" value="{{ level }}" required />
+      </div>
+      <div class="form-group">
+        <label for="responsibilities">Responsibilities</label>
+        <input
+          type="text"
+          id="responsibilities"
+          name="responsibilities"
+          class="form-control"
+          value="{{ responsibilities }}"
+          required
+        />
+      </div>
+      <button type="submit" id="submitButton">Submit</button>
+    </form>
+  </section>
+</div>
+
+{% include "./base/footer.html" %}

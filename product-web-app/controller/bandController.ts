@@ -9,7 +9,7 @@ export default class BandController {
   }
 
   async renderAddBandPage(req: Request, res: Response) {
-    res.render('add-band');
+    res.render('add-band', { title: 'Add band' });
   }
 
   async addBand(req: Request, res: Response) {
@@ -21,12 +21,12 @@ export default class BandController {
         await bandService.addBand(data);
         res.locals.successmessage = 'You added band!';
       } else {
-        res.locals.errormessage = 'failed to add band';
+        res.locals.errormessage = 'failed to add band, level should be between 1 and 9';
       }
     } catch (e) {
       res.locals.errormessage = 'Failed to add band';
     }
 
-    res.render('add-band');
+    res.render('add-band', { title: 'Add band' });
   }
 }

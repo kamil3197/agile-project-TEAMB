@@ -1,0 +1,36 @@
+
+{% include "./base/header.html" %}
+    <div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
+        <section id="jobSpec" class="mt-4">
+            <h2 class="center">Job Specifications List</h2>
+            {% if jobSpecification %}
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>{{ jobSpecification.roleTitle}}</p>
+                            {% if jobSpecification.summary.length > 500 %}
+                                <p class="text-danger">summary is too long ({{ jobSpecification.summary.length }} characters)</p>
+                            {% else %}
+                                <p>{{ jobSpecification.summary }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            {% if jobSpecification.specificationLink.length > 1000 %}
+                                <p class="text-danger">Specification Link is too long ({{ jobSpecification.specificationLink.length }} characters)</p>
+                            {% else %}
+                                <p><a href="{{ jobSpecification.specificationLink }}" target="_blank" class="btn btn-primary">LINK TO SHAREPOINT</a></p>
+                                <p><a href="/job-roles" class="btn btn-secondary">RETURN TO JOBROLES</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                There are no job specifications available...
+            </div>
+            {% endif %}
+        </section>
+    </div>
+    {% include "./base/footer.html" %}

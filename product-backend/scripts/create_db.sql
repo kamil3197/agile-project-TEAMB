@@ -19,8 +19,8 @@ role varchar(64) NOT NULL
 -- US013 add new capability
 CREATE TABLE IF NOT EXISTS  Capability (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(15),
-    lead_name VARCHAR(15),
-    lead_photo LONGBLOB,
-    lead_message TEXT
+    capabilityName VARCHAR(15),
+    leadName VARCHAR(15),
+    leadPhoto LONGBLOB,
+    leadMessage TEXT
 );

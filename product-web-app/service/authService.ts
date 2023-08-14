@@ -1,6 +1,7 @@
 import axios from 'axios';
 import User from '../model/register.js';
 import registerValidator from '../validator/registrationValidator.js';
+import Login from '../model/login.js';
 
 class AuthService {
   private API_URL: String;
@@ -20,6 +21,15 @@ class AuthService {
       return response.data;
     } catch (error) {
       throw new Error('Registration failed! Please try again.');
+    }
+  }
+
+  async login(login: Login): Promise<string> {
+    try {
+      const response = await axios.post(`${this.API_URL}/auth/login`, login);
+      return response.data;
+    } catch (error) {
+      throw new Error('Login failed! Please try again.');
     }
   }
 }

@@ -1,0 +1,55 @@
+name: AWS DEPLOYMENT
+
+on:
+  push:
+    branches: [ "dev" ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build & push server
+        working-directory: "./product-backend"
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: team-sor
+          IMAGE_TAG: sor-api
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Build & push client
+        working-directory: "./product-web-app"
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: team-sor
+          IMAGE_TAG: sor-webapp
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Update database 
+        working-directory: "./product-backend/scripts"
+        env:
+          DB_USERNAME: ${{ vars.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: academy2020.cpc8rvmbbd9k.eu-west-2.rds.amazonaws.com 
+          DB_SCHEMA: ${{ vars.DB_SCHEMA }}
+          DB_PORT: ${{ vars.DB_PORT }}
+        run: | 
+          chmod +x db_build.sh
+          ./db_build.sh

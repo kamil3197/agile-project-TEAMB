@@ -8,9 +8,14 @@ main.content {
   flex: 1;
 }
 
+header.header {
+  background-color: rgba(41, 53, 130, 1);
+  background-image: linear-gradient(156deg, rgba(41, 53, 130, 1) 6%, rgba(52, 179, 76, 1) 100%);
+}
+
 footer.footer {
-  background-color: #f8f9fa;
-  padding: 20px;
+  background-color: rgba(41, 53, 130, 1);
+  background-image: linear-gradient(333deg, rgba(41, 53, 130, 1) 6%, rgba(52, 179, 76, 1) 100%);
   text-align: center;
 }
 
@@ -27,24 +32,34 @@ span.toggle-password {
 }
 
 button.btn-custom-primary {
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #2a3980;
+  border-color: #2a3980;
   color: white;
 }
 
 button.btn-custom-primary:hover,
 button.btn-custom-primary:focus {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #34b34c;
+  border-color: #34b34c;
   color: white;
 }
 
 a[href='login'] {
-  color: #343a40;
+  color: #2a3980;
 }
 
 a[href='login']:hover,
 a[href='login']:focus {
+  color: #34b34c;
+  text-decoration: none;
+}
+
+a[href='register'] {
+  color: #343a40;
+}
+
+a[href='register']:hover,
+a[href='register']:focus {
   color: #007bff;
   text-decoration: none;
 }

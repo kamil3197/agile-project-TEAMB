@@ -10,12 +10,7 @@ public class PasswordHasher {
         return BCrypt.hashpw(plainPassword, salt);
     }
 
-
-    public boolean authenticateUser(String userEmail, String providedPassword) {
-        // Retrieve the hashed password from the database based on the username
-        String hashedPasswordFromDB = "Retrieve hashed password from the database"; // Replace this line with actual database retrieval
-
-        // Compare the provided password with the hashed password
+    public boolean authenticateUser(String providedPassword, String hashedPasswordFromDB) {
         return BCrypt.checkpw(providedPassword, hashedPasswordFromDB);
     }
 }

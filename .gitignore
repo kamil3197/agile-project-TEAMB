@@ -55,7 +55,6 @@ usage-data-config.json
 .DS_Store
 .idea
 
-package-lock.json
 
 scripts/create_db_exe.sql
 scripts/create_data_exe.sql
