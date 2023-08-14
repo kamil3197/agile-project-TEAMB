@@ -53,3 +53,13 @@ a[href='login']:focus {
   color: #34b34c;
   text-decoration: none;
 }
+
+a[href='register'] {
+  color: #343a40;
+}
+
+a[href='register']:hover,
+a[href='register']:focus {
+  color: #007bff;
+  text-decoration: none;
+}
