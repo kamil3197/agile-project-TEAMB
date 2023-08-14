@@ -48,11 +48,11 @@ jobs:
       - name: Update database 
         working-directory: "./product-backend/scripts"
         env:
-          DB_USERNAME: $DB_USERNAME
+          DB_USERNAME: ${{ vars.DB_USERNAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: $DB_HOST
-          DB_SCHEMA: $DB_SCHEMA
-          DB_PORT: $DB_PORT
+          DB_HOST: ${{ vars.DB_HOST }}
+          DB_SCHEMA: ${{ vars.DB_SCHEMA }}
+          DB_PORT: ${{ vars.DB_PORT }}
         run: | 
-          chmod +x db_build.sh
+          chmod +x ./db_build.sh
           ./db_build.sh
