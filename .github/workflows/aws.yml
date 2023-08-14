@@ -47,5 +47,5 @@ jobs:
       - name: Update database 
         working-directory: "./product-backend/scripts"
         run: | 
-        chmod +x db_build.sh
+        chmod +x ./db_build.sh
         ./db_build.sh
