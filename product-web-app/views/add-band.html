@@ -1,0 +1,38 @@
+{% include "./base/header.html" %}
+
+<div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
+  <section id="form" class="mt-4">
+    <h2>Enter Band details</h2>
+
+    {% if successmessage %}
+    <div class="alert alert-success" role="alert">{{successmessage}}</div>
+    {% endif %} {% if errormessage %}
+    <div class="alert alert-danger" role="alert">{{errormessage}}</div>
+    {% endif %}
+
+    <form action="/admin/add-band" method="post">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" value="{{ name }}" required />
+      </div>
+      <div class="form-group">
+        <label for="level">Level</label>
+        <input type="number" id="level" name="level" class="form-control" value="{{ level }}" required />
+      </div>
+      <div class="form-group">
+        <label for="responsibilities">Responsibilities</label>
+        <input
+          type="text"
+          id="responsibilities"
+          name="responsibilities"
+          class="form-control"
+          value="{{ responsibilities }}"
+          required
+        />
+      </div>
+      <button type="submit" id="submitButton">Submit</button>
+    </form>
+  </section>
+</div>
+
+{% include "./base/footer.html" %}
