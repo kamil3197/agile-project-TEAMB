@@ -6,7 +6,7 @@ insert into JobRoles(job_role_id, job_role_title) values
     (4,'Testing and Quality Assurance'),
     (5,'Product Specialist');
 
-    -- US024
+-- US024-register-system & US040-login-system
 insert into `User`(email, password, role) values
     ('test1@kainos@com', '$2a$12$oMfM6nZMcIkUSSO8DeL/.OXBLetvOV4p/4zan2kxe3BtnEAmLINUm', 'Admin'),
     ('test2@kainos@com', '$2a$12$h0/SQJD1D2BbaMguYAoABeHx3rTaKCp6.XAy1oLwcOynIxhPfAhGa', 'Employee');
