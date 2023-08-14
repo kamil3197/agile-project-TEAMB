@@ -31,14 +31,17 @@ span.toggle-password {
   cursor: pointer;
 }
 
-button.btn-custom-primary {
+button.btn-custom-primary,
+a.btn-custom-primary {
   background-color: #2a3980;
   border-color: #2a3980;
   color: white;
 }
 
 button.btn-custom-primary:hover,
-button.btn-custom-primary:focus {
+button.btn-custom-primary:focus,
+a.btn-custom-primary:hover,
+a.btn-custom-primary:focus {
   background-color: #34b34c;
   border-color: #34b34c;
   color: white;
@@ -62,4 +65,8 @@ a[href='register']:hover,
 a[href='register']:focus {
   color: #007bff;
   text-decoration: none;
+}
+
+div.specification {
+  border-color: #007bff;
 }
