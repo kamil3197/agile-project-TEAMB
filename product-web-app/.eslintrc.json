@@ -16,10 +16,12 @@
     },
     "rules": {
         "react/jsx-filename-extension": "off",
+        "class-methods-use-this": "off",
         "linebreak-style": [
             "error",
             "unix"
-        ]
+        ],
+        "class-methods-use-this": "off"
     },
     "overrides": [
         {

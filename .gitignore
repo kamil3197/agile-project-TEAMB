@@ -1,23 +1,63 @@
-# General
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+db.properties
+config.yml
+workspace.xml
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
 .DS_Store
-.AppleDouble
-.LSOverride
 
-# Icon must end with two \r
-Icon
+# Node.js ignores
+node_modules/
+
+# Prototype ignores - per-user
+.tmp/
+.env
+migrate.log
+usage-data-config.json
+
+# General ignores
+.DS_Store
+.idea
 
 
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
+scripts/create_db_exe.sql
+scripts/create_data_exe.sql
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -27,5 +67,3 @@ Temporary Items
 .apdisk
 
 agile-project-TEAMB.git
-# Node.js ignores
-node_modules/
