@@ -16,7 +16,6 @@ import java.util.OptionalInt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class AddJobRoleServiceTest {
@@ -31,13 +30,12 @@ public class AddJobRoleServiceTest {
     );
 
     @Test
-    void createJobRole_shouldReturnId_whenDaoReturnsId() throws SQLException, FailedToCreateJobRoleException {
-        int expectedResult = 1;
-        Mockito.when(jobRoleDao.createRole(addJobRole)).thenReturn(OptionalInt.of(expectedResult));
+    void createJobRole_shouldReturnId_whenDaoReturnsId(int roleID) throws SQLException, FailedToCreateJobRoleException {
+        OptionalInt expectedResult = OptionalInt.of(1);
+        Mockito.when(jobRoleDao.createRole(addJobRole)).thenReturn(expectedResult);
+        Mockito.when(jobRoleDao.createSpec(addJobRole, OptionalInt.of(roleID))).thenReturn(expectedResult);
 
-        int result = jobRoleService.createJobRole(addJobRole);
-        verify(jobRoleDao).createRole(addJobRole);
-        verify(jobRoleDao).createSpec(addJobRole);
+        OptionalInt result = jobRoleService.createJobRole(addJobRole);
         assertEquals(result, expectedResult);
     }
 

@@ -1,5 +1,5 @@
 export interface AddJobRole {
   title?: string;
   summary?: string;
-  sharepointLink?: string;
+  sharepoint_link?: string;
 }

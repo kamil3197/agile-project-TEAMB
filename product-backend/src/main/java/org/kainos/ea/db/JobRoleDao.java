@@ -41,19 +41,22 @@ public class JobRoleDao {
         ResultSet rs = st.getGeneratedKeys();
 
         if (rs.next()) {
-            return OptionalInt.of(rs.getInt(1));
+            OptionalInt roleID = OptionalInt.of(rs.getInt(1));
+            return roleID;
         }
         return OptionalInt.empty();
     }
 
-    public OptionalInt createSpec(AddJobRole addJobRole) throws SQLException {
+    public OptionalInt createSpec(AddJobRole addJobRole, OptionalInt roleID) throws SQLException {
         Connection c = databaseConnector.getConnection();
 
-        String insertStatement = "INSERT INTO Specifications (summary, sharepoint_link) VALUES (?, ?)";
+        String insertStatement = "INSERT INTO Specifications (role_id, summary, sharepoint_link) VALUES (?, ?, ?)";
         PreparedStatement st = c.prepareStatement(insertStatement, Statement.RETURN_GENERATED_KEYS);
+        int roleIdValue = roleID.orElse(-1);
 
-        st.setString(1, addJobRole.getSummary());
-        st.setString(2, addJobRole.getLink());
+        st.setInt(1, roleIdValue);
+        st.setString(2, addJobRole.getSummary());
+        st.setString(3, addJobRole.getLink());
 
         st.executeUpdate();
 

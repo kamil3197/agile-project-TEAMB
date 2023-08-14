@@ -27,7 +27,7 @@ public class AddJobRoleIT {
     }
 
     @Test
-    public void postJobRoles_shouldReturn500() {
+    public void postJobRoles_shouldReturn400() {
         AddJobRole addJobRole = new AddJobRole(
                 "tomeweqqweqweqweweqqweeqweqwqweqwee" +
                         "wqewqeqweqweqweqweqweqweqwweqq" +

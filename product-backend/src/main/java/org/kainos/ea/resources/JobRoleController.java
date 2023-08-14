@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
+import java.util.OptionalInt;
 
 @Api("Job Roles API")
 @Path("/api")
@@ -38,7 +39,7 @@ public class JobRoleController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createJobRole(@Valid AddJobRole addJobRole) {
         try {
-            int createdRoleId = JobRoleService.createJobRole(addJobRole);
+            OptionalInt createdRoleId = JobRoleService.createJobRole(addJobRole);
             return Response.status(Response.Status.CREATED)
                     .entity("Job role created with ID: " + createdRoleId)
                     .build();

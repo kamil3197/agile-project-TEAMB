@@ -27,13 +27,13 @@ public class JobRoleService {
         }
     }
 
-    public static int createJobRole(AddJobRole addJobRole) throws FailedToCreateJobRoleException, SQLException {
+    public static OptionalInt createJobRole(AddJobRole addJobRole) throws FailedToCreateJobRoleException, SQLException {
         try {
 
             OptionalInt roleID = jobRoleDao.createRole(addJobRole);
-            OptionalInt specID = jobRoleDao.createSpec(addJobRole);
+            OptionalInt specID = jobRoleDao.createSpec(addJobRole, roleID);
             if (roleID.isPresent() && specID.isPresent()) {
-                return roleID.orElseThrow(() -> new FailedToCreateJobRoleException());
+                return roleID;
             } else {
                 throw new FailedToCreateJobRoleException();
             }
