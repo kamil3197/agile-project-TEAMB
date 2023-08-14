@@ -33,9 +33,7 @@ export default class JobRolesController {
             summary: xss(data.summary),
             link: xss(data.link),
           };
-          console.log(sanitizedData)
-
-          const thisdata = await jobRoleService.createJobRoles(sanitizedData);
+          await jobRoleService.createJobRoles(sanitizedData);
           res.locals.successMessage = 'Successfuly added job role';
         }
       } catch (e) {
