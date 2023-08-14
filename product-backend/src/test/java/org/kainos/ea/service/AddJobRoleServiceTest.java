@@ -30,10 +30,10 @@ public class AddJobRoleServiceTest {
     );
 
     @Test
-    void createJobRole_shouldReturnId_whenDaoReturnsId(int roleID) throws SQLException, FailedToCreateJobRoleException {
+    void createJobRole_shouldReturnId_whenDaoReturnsId() throws SQLException, FailedToCreateJobRoleException {
         OptionalInt expectedResult = OptionalInt.of(1);
         Mockito.when(jobRoleDao.createRole(addJobRole)).thenReturn(expectedResult);
-        Mockito.when(jobRoleDao.createSpec(addJobRole, OptionalInt.of(roleID))).thenReturn(expectedResult);
+        Mockito.when(jobRoleDao.createSpec(addJobRole, expectedResult)).thenReturn(expectedResult);
 
         OptionalInt result = jobRoleService.createJobRole(addJobRole);
         assertEquals(result, expectedResult);

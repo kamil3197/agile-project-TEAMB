@@ -34,7 +34,7 @@ public class JobRoleDao {
         String insertStatement = "INSERT INTO JobRoles (job_role_title) VALUES (?)";
         PreparedStatement st = c.prepareStatement(insertStatement, Statement.RETURN_GENERATED_KEYS);
 
-        st.setString(1, addJobRole.getTitle());
+        st.setString(1, addJobRole.getRole_title());
 
         st.executeUpdate();
 

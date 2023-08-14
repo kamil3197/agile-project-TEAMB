@@ -19,7 +19,7 @@ export default class JobRolesController {
     });
 
     app.get('/admin/job-roles', async (req: Request, res: Response) => {
-      res.render('add-job-roles');
+      res.render('add-job-roles', { title: 'Add Job Role' });
     });
 
     app.post('/admin/job-roles', async (req: Request, res: Response) => {
@@ -27,19 +27,21 @@ export default class JobRolesController {
       const jobRoleService = this.jobRoleServiceClass;
 
       try {
-        if (data.title && data.summary && data.sharepoint_link !== undefined) {
+        if (data.role_title && data.summary && data.link !== undefined) {
           const sanitizedData: AddJobRole = {
-            title: xss(data.title),
+            role_title: xss(data.role_title),
             summary: xss(data.summary),
-            sharepoint_link: xss(data.sharepoint_link),
+            link: xss(data.link),
           };
-          await jobRoleService.createJobRoles(sanitizedData);
+          console.log(sanitizedData)
+
+          const thisdata = await jobRoleService.createJobRoles(sanitizedData);
           res.locals.successMessage = 'Successfuly added job role';
         }
       } catch (e) {
         res.locals.errorMessage = e;
       }
-      res.render('add-job-roles');
+      res.render('add-job-roles', { title: 'Add Job Role' });
     });
   }
 }
