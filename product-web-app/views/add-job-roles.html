@@ -11,12 +11,12 @@
             {% endif %}
         <form action="/admin/job-roles" method="post">
             <div class="form-group">
-                <label for="role_title">Title</label>
-                <input type="text" id="role_title" name="role_title" class="form-control" value="{{ role_title }}" required>
+                <label for="roleTitle">Title</label>
+                <input type="text" id="roleTitle" name="roleTitle" class="form-control" value="{{ roleTitle }}" required>
             </div>
             <div class="form-group">
                 <label for="summary">Summary</label>
-                <input type="text" id="summary" name="summary" class="form-control" value="{{ summary }}" required>
+                <textarea rows="15" type="text" id="summary" name="summary" class="form-control" value="{{ summary }}" required></textarea>
             </div>
             <div class="form-group">
                 <label for="link">Sharepoint link</label>

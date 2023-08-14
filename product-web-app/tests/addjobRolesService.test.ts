@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import chai from 'chai';
+import chai, { assert } from 'chai';
 import JobRoleService from '../service/jobRolesService.js';
 
 const addJobRole = {
@@ -49,9 +49,11 @@ describe('JobRoleService', () => {
       const mock = new MockAdapter(axios);
 
       mock.onPost('http://localhost:8080/api/admin/job-roles', addJobRole).reply(201);
-
-      const response = await jobRolesService.createJobRoles(addJobRole);
-      expect(response).to.equal(201);
+      try{
+        await jobRolesService.createJobRoles(addJobRole);
+      } catch {
+        assert.fail('exception shouldn\' be thrown')
+      }
     });
   });
 });

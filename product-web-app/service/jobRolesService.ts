@@ -18,10 +18,9 @@ export default class JobRoleService {
     }
   }
 
-  async createJobRoles(addJobRole: AddJobRole): Promise<Number> {
+  async createJobRoles(addJobRole: AddJobRole): Promise<void> {
     try {
-      const response = await axios.post(`${this.API_URL}/admin/job-roles`, addJobRole);
-      return response.status;
+      await axios.post(`${this.API_URL}/admin/job-roles`, addJobRole);
     } catch (e) {
       throw new Error('Could not create job role');
     }

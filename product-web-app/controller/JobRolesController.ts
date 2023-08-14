@@ -27,9 +27,9 @@ export default class JobRolesController {
       const jobRoleService = this.jobRoleServiceClass;
 
       try {
-        if (data.role_title && data.summary && data.link !== undefined) {
+        if (data.roleTitle && data.summary && data.link !== undefined) {
           const sanitizedData: AddJobRole = {
-            role_title: xss(data.role_title),
+            roleTitle: xss(data.roleTitle),
             summary: xss(data.summary),
             link: xss(data.link),
           };
