@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 db_name="$DB_NAME"
 DB_PORT=3306
