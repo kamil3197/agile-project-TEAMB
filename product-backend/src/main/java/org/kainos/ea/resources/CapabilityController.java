@@ -21,6 +21,7 @@ import java.sql.SQLException;
 @Path("/api")
 public class CapabilityController {
     private CapabilityService capabilityService = new CapabilityService(new CapabilityDao());
+
     @POST
     @Path("/admin/capabilities")
     @Produces(MediaType.APPLICATION_JSON)
