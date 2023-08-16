@@ -20,4 +20,16 @@ CREATE TABLE IF NOT EXISTS Specifications (
     summary VARCHAR(500),
     sharepoint_link VARCHAR(500),
     FOREIGN KEY (role_id) REFERENCES JobRoles(job_role_id)
+    );
+
+  -- US013 add new capability
+    CREATE TABLE IF NOT EXISTS  `Capability` (
+        capabilityId INT PRIMARY KEY AUTO_INCREMENT,
+        capabilityName VARCHAR(15),
+        leadName VARCHAR(15),
+        leadPhoto TEXT CHARACTER SET utf8mb4,
+        leadMessage VARCHAR(100)
+    );
+
+
 )

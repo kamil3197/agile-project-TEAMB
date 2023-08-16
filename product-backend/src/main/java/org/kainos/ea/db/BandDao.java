@@ -4,6 +4,7 @@ import org.kainos.ea.cli.Band;
 import org.kainos.ea.cli.Capability;
 
 import java.sql.*;
+import java.util.Base64;
 import java.util.OptionalInt;
 
 public class BandDao {
@@ -38,7 +39,8 @@ public class BandDao {
         PreparedStatement st = c.prepareStatement(insertStatement, Statement.RETURN_GENERATED_KEYS);
         st.setString(1,capability.getCapabilityName());
         st.setString(2,capability.getLeadName());
-        st.setBlob(3,capability.getLeadPhoto());
+        byte[] leadPhotoBytes = Base64.getDecoder().decode(capability.getLeadPhoto());
+        st.setBytes(3, leadPhotoBytes);
         st.setString(4,capability.getLeadMessage());
 
         st.executeUpdate();

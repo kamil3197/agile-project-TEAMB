@@ -1,14 +1,25 @@
 package org.kainos.ea.cli;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Blob;
 
 public class Capability {
     private int capabilityId;
     private String capabilityName;
     private String leadName;
-    private Blob leadPhoto;
+    private String leadPhoto;
+    private String leadMessage;
 
-    public Capability(int capabilityId, String capabilityName, String leadName, Blob leadPhoto, String leadMessage) {
+    @JsonCreator
+    public Capability(
+            @JsonProperty("capabilityId") int capabilityId,
+            @JsonProperty("capabilityName") String capabilityName,
+            @JsonProperty("leadName") String leadName,
+            @JsonProperty("leadPhoto") String leadPhoto,
+            @JsonProperty("leadMessage") String leadMessage)
+    {
         this.capabilityId = capabilityId;
         this.capabilityName = capabilityName;
         this.leadName = leadName;
@@ -40,11 +51,11 @@ public class Capability {
         this.leadName = leadName;
     }
 
-    public Blob getLeadPhoto() {
+    public String getLeadPhoto() {
         return leadPhoto;
     }
 
-    public void setLeadPhoto(Blob leadPhoto) {
+    public void setLeadPhoto(String leadPhoto) {
         this.leadPhoto = leadPhoto;
     }
 
@@ -55,6 +66,4 @@ public class Capability {
     public void setLeadMessage(String leadMessage) {
         this.leadMessage = leadMessage;
     }
-
-    private String leadMessage;
 }
