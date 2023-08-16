@@ -41,7 +41,6 @@ app.use(
   }),
 );
 
-
 declare module 'express-session' {
   interface SessionData {
     token: string;
@@ -61,14 +60,13 @@ new JobSpecificationController().init(app);
 
 app.listen(3000, () => {
   // eslint-disable-next-line no-console
-  
 });
 
 app.get('/', async (req, res) => {
   // if (!req.session.token || req.session.token.length === 0) {
   //   res.redirect('auth/login');
   // } else {
-    res.redirect('/job-roles');
+  res.redirect('/job-roles');
   // }
 });
 
