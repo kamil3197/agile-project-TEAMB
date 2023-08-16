@@ -40,6 +40,7 @@ public class BandController {
             return Response.serverError().build();
         }
     }
+
     @POST
     @Path("/admin/capabilities")
     @Produces(MediaType.APPLICATION_JSON)

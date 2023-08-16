@@ -24,12 +24,10 @@ CREATE TABLE IF NOT EXISTS Specifications (
 
   -- US013 add new capability
     CREATE TABLE IF NOT EXISTS  `Capability` (
-        capabilityId INT PRIMARY KEY AUTO_INCREMENT,
-        capabilityName VARCHAR(15),
-        leadName VARCHAR(15),
-        leadPhoto TEXT CHARACTER SET utf8mb4,
-        leadMessage VARCHAR(100)
+        capability_id INT PRIMARY KEY AUTO_INCREMENT,
+        capability_name VARCHAR(15),
+        lead_name VARCHAR(15),
+        lead_photo MEDIUMBLOB,
+        lead_message VARCHAR(100)
     );
 
-
-)

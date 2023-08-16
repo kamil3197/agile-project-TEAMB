@@ -3,8 +3,6 @@ package org.kainos.ea.cli;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Blob;
-
 public class Capability {
     private int capabilityId;
     private String capabilityName;
@@ -18,8 +16,7 @@ public class Capability {
             @JsonProperty("capabilityName") String capabilityName,
             @JsonProperty("leadName") String leadName,
             @JsonProperty("leadPhoto") String leadPhoto,
-            @JsonProperty("leadMessage") String leadMessage)
-    {
+            @JsonProperty("leadMessage") String leadMessage) {
         this.capabilityId = capabilityId;
         this.capabilityName = capabilityName;
         this.leadName = leadName;
