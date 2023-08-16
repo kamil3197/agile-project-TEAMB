@@ -1,28 +1,27 @@
-
 {% include "./base/header.html" %}
 
 <div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
-        <section id="orders" class="mt-4">
-            <h2>job-roles</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">title</th>
-                    </tr>
-                </thead>
-            {% if jobRoles and jobRoles.length > 0 %}
-                <tbody>
-                {% for jobRole in jobRoles %}
-                <tr>
-                 <td><a href="/job-specification/{{ jobRole.jobRoleId }}">{{ jobRole.roleTitle }}</a></td>
-                </tr>    
-                {% endfor %}
-                </tbody>
-            </table>
-            {% else %}
-            <div class="alert alert-danger" role="alert">There are no job-roles</div>
-            {% endif %}
-          </section>
-        </div>
-        
-        {% include "./base/footer.html" %}
+  <section id="orders" class="mt-4">
+    <h2>job-roles</h2>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">title</th>
+        </tr>
+      </thead>
+      {% if jobRoles and jobRoles.length > 0 %}
+      <tbody>
+        {% for jobRole in jobRoles %}
+        <tr>
+          <td><a href="/job-specification/{{ jobRole.jobRoleId }}">{{ jobRole.roleTitle }}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-danger" role="alert">There are no job-roles</div>
+    {% endif %}
+  </section>
+</div>
+
+{% include "./base/footer.html" %}

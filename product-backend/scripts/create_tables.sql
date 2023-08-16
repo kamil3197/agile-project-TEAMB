@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS Specifications (
     FOREIGN KEY (role_id) REFERENCES JobRoles(job_role_id)
 );
 
-CREATE TABLE IF NOT EXISTS Capability (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    capability_name VARCHAR(15),
-    lead_name VARCHAR(15),
-    lead_photo BLOB,
-    lead_message VARCHAR(255)
+CREATE TABLE IF NOT EXISTS  Capability (
+    capability_id INT PRIMARY KEY AUTO_INCREMENT,
+    capability_name VARCHAR(80),
+    lead_name VARCHAR(80),
+    lead_photo MEDIUMBLOB,
+    lead_message VARCHAR(500)
 );
