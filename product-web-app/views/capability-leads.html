@@ -1,0 +1,22 @@
+{% include "./base/header.html" %}
+
+<div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
+  <section id="capability-leads" class="mt-4">
+    <h2 class="mb-3">Capabilities and leads</h2>
+    <table class="table table-bordered table-hover">
+      {% if jobRoles and jobRoles.length > 0 %}
+      <tbody>
+        {% for capability in Capabilities %}
+        <tr>
+          <td><a href="/job-specification/{{ jobRole.jobRoleId }}">{{ capability.capabilityName }}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-danger" role="alert">There are no capabilities</div>
+    {% endif %}
+  </section>
+</div>
+
+{% include "./base/footer.html" %}

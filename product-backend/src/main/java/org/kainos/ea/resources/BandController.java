@@ -4,8 +4,8 @@ import io.swagger.annotations.Api;
 import org.kainos.ea.api.BandService;
 import org.kainos.ea.cli.Band;
 import org.kainos.ea.client.FailedToCreateBandException;
+import org.kainos.ea.client.FailedToInsertTokenException;
 import org.kainos.ea.db.BandDao;
-import org.kainos.ea.exception.NameTooShortException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -25,7 +25,7 @@ public class BandController {
     @POST
     @Path("/admin/band")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createBand(Band band) throws NameTooShortException, SQLException, FailedToCreateBandException {
+    public Response createBand(Band band) throws FailedToInsertTokenException.NameTooShortException, SQLException, FailedToCreateBandException {
 
         try {
             int BandId = bandService.createBand(band);

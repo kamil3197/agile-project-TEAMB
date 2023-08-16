@@ -1,7 +1,6 @@
 package org.kainos.ea.db;
 
 import org.kainos.ea.cli.JobSpecification;
-import org.kainos.ea.exception.RoleNotExistException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

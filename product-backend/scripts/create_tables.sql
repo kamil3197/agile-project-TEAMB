@@ -15,9 +15,17 @@ CREATE TABLE IF NOT EXISTS `User` (
 
 -- US014 Specification table
 CREATE TABLE IF NOT EXISTS Specifications (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     role_id INT,
     summary VARCHAR(500),
     sharepoint_link VARCHAR(500),
     FOREIGN KEY (role_id) REFERENCES JobRoles(job_role_id)
-)
+);
+
+CREATE TABLE IF NOT EXISTS Capability (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    capability_name VARCHAR(15),
+    lead_name VARCHAR(15),
+    lead_photo BLOB,
+    lead_message VARCHAR(255)
+);
