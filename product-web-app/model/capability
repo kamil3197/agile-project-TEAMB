@@ -1,7 +1,0 @@
-export default class capability {
-    capabilityId: number;
-    capabilityName: string;
-    leadName: string;
-    leadPhoto: string;
-    leadMessage:string;
-}

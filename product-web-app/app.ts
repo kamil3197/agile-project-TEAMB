@@ -10,6 +10,7 @@ import JobSpecificationController from './controller/JobSpecificationController.
 import BandController from './controller/bandController.js';
 import JobRolesController from './controller/JobRolesController.js';
 import authController from './controller/authController.js';
+import CapabilityController from './controller/capabilityController.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -57,7 +58,7 @@ const jobRolesController = new JobRolesController();
 jobRolesController.init(app);
 
 new JobSpecificationController().init(app);
-
+new CapabilityController().init(app);
 app.listen(3000, () => {
   // eslint-disable-next-line no-console
 });
