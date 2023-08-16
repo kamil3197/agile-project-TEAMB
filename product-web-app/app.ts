@@ -7,18 +7,15 @@ import nunjucks from 'nunjucks';
 import axios from 'axios';
 import cookieParser from 'cookie-parser';
 
-
 import JobSpecificationController from './controller/JobSpecificationController.js';
 import BandController from './controller/bandController.js';
 import JobRolesController from './controller/JobRolesController.js';
 import AuthController from './controller/authController.js';
-import AuthMiddleware from './middleware/auth.js'
+import AuthMiddleware from './middleware/auth.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const app = express();
-
-
 
 axios.defaults.baseURL = process.env.API_URL;
 
@@ -48,7 +45,6 @@ app.use(
   }),
 );
 
-
 declare module 'express-session' {
   interface SessionData {
     token: string;
@@ -60,7 +56,8 @@ app.set('view engine', 'html');
 app.use('/public', express.static(path.join(dirname, 'public')));
 
 const authMiddleware = new AuthMiddleware();
-app.use(authMiddleware.authorisation)
+app.use(authMiddleware.addToken);
+app.use(authMiddleware.authorisation);
 
 const bandController = new BandController();
 bandController.initializeRoutes(app);
@@ -72,11 +69,11 @@ new JobSpecificationController().init(app);
 
 app.listen(3000, () => {
   // eslint-disable-next-line no-console
-  console.log('Server started on port 3000')
+  console.log('Server started on port 3000');
 });
 
 app.get('/', async (req, res) => {
-    res.redirect('/home');
+  res.redirect('/home');
 });
 
 AuthController(app);

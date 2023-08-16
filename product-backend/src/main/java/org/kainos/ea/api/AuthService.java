@@ -4,10 +4,10 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.kainos.ea.cli.Login;
 import org.kainos.ea.cli.RequestUser;
-import org.kainos.ea.cli.Token;
 import org.kainos.ea.cli.User;
 import org.kainos.ea.client.*;
 import org.kainos.ea.db.AuthDao;
+import org.kainos.ea.utils.DateService;
 import org.kainos.ea.utils.PasswordHasher;
 import org.kainos.ea.validator.RegisterValidator;
 
@@ -67,7 +67,6 @@ public class AuthService {
         String jwtToken = JWT.create()
                 .withSubject(userDb.getEmail())
                 .withClaim("user_id", userDb.getId())
-                .withClaim("user_email", userDb.getEmail())
                 .withClaim("user_role", userDb.getRole())
                 .withIssuedAt(new Date(now))
                 .withExpiresAt(new Date(expiry))

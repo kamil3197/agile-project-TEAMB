@@ -12,6 +12,7 @@ import org.kainos.ea.resources.AuthController;
 import org.kainos.ea.resources.JobRoleController;
 import org.kainos.ea.resources.JobSpecificationController;
 import org.kainos.ea.resources.BandController;
+import org.kainos.ea.utils.AuthorisationFilter;
 
 public class DropwizardWebServiceApplication extends Application<DropwizardWebServiceConfiguration> {
 
@@ -37,6 +38,7 @@ public class DropwizardWebServiceApplication extends Application<DropwizardWebSe
     @Override
     public void run(final DropwizardWebServiceConfiguration configuration,
                     final Environment environment) {
+        environment.jersey().register(new AuthorisationFilter());
         environment.jersey().register(new JobSpecificationController());
         environment.jersey().register(new AuthController());
         environment.jersey().register(RolesAllowedDynamicFeature.class);

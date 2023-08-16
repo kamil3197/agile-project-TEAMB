@@ -2,10 +2,10 @@ import axios from 'axios';
 import User from '../model/register.js';
 import registerValidator from '../validator/registrationValidator.js';
 import Login from '../model/login.js';
-import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export default class AuthService {
   private API_URL: String;
+
   private validator: any;
 
   constructor() {
@@ -32,5 +32,4 @@ export default class AuthService {
       throw new Error('Login failed! Please try again.');
     }
   }
-
 }

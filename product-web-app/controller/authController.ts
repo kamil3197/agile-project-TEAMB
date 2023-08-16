@@ -2,7 +2,6 @@ import { Application } from 'express';
 import User from '../model/register.js';
 import AuthService from '../service/authService.js';
 import Login from '../model/login.js';
-import { request } from 'http';
 
 function authController(app: Application) {
   app.get('/auth/register', async (req, res) => {
@@ -39,7 +38,6 @@ function authController(app: Application) {
       res.cookie('JWT', token, {
         maxAge: 3600000,
       });
-
 
       res.redirect('/home');
     } catch (error) {

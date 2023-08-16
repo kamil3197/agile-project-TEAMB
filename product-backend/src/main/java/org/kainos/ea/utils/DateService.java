@@ -1,4 +1,4 @@
-package org.kainos.ea.api;
+package org.kainos.ea.utils;
 
 public class DateService {
     public long getCurrentTime() {
