@@ -32,6 +32,7 @@ export default class JobRolesController {
             roleTitle: xss(data.roleTitle),
             summary: xss(data.summary),
             link: xss(data.link),
+            band_id: data.band_id
           };
           await jobRoleService.createJobRoles(sanitizedData);
           res.locals.successMessage = 'Successfuly added job role';

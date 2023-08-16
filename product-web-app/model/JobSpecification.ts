@@ -4,4 +4,5 @@ export default interface JobSpecification {
   roleTitle: string;
   summary: string;
   specificationLink: string;
+  band_level: number;
 }

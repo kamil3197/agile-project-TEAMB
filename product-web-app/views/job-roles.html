@@ -7,7 +7,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">title</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Band Level</th>
                     </tr>
                 </thead>
             {% if jobRoles and jobRoles.length > 0 %}
@@ -15,6 +16,7 @@
                 {% for jobRole in jobRoles %}
                 <tr>
                  <td><a href="/job-specification/{{ jobRole.jobRoleId }}">{{ jobRole.roleTitle }}</a></td>
+                 <td><a>{{ jobRole.band_level }}</a></td>
                 </tr>    
                 {% endfor %}
                 </tbody>
