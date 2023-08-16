@@ -4,18 +4,34 @@
   <section id="capability-leads" class="mt-4">
     <h2 class="mb-3">Capabilities and leads</h2>
     <table class="table table-bordered table-hover">
-      {% if jobRoles and jobRoles.length > 0 %}
+      {% if capabilities and capabilities.length > 0 %}
       <tbody>
-        {% for capability in Capabilities %}
+        {% for capability in capabilities %}
         <tr>
-          <td><a href="/job-specification/{{ jobRole.jobRoleId }}">{{ capability.capabilityName }}</a></td>
+          <td class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenu2"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{ capability.capabilityName }} Capability
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <div class="dropdown-item">
+                <div class="">Action</div>
+              </div>
+            </div>
+          </td>
         </tr>
-        {% endfor %}
+
+        {% endif %}
       </tbody>
+      {% endfor %} {% else %}
+      <div class="alert alert-danger" role="alert">There are no capabilities</div>
     </table>
-    {% else %}
-    <div class="alert alert-danger" role="alert">There are no capabilities</div>
-    {% endif %}
   </section>
 </div>
 
