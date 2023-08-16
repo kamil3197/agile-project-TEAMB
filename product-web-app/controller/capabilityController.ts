@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { Capability } from '../model/capability.js';
+import {Capability}  from '../model/capability.js';
 import CapabilityService  from '../service/capabilityService.js';
 import xss from 'xss';
 
