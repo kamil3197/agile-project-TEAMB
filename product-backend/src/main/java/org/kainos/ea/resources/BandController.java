@@ -2,14 +2,18 @@ package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
 import org.kainos.ea.api.BandService;
+import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.cli.Band;
 import org.kainos.ea.cli.Capability;
 import org.kainos.ea.client.FailedToCreateBandException;
 import org.kainos.ea.client.FailedToCreateCapabilityException;
 import org.kainos.ea.db.BandDao;
+import org.kainos.ea.db.CapabilityDao;
 import org.kainos.ea.exception.NameTooShortException;
 
-import javax.ws.rs.*;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -21,7 +25,7 @@ import java.sql.SQLException;
 public class BandController {
 
     private BandService bandService = new BandService(new BandDao());
-
+    private CapabilityService capabilityService = new CapabilityService(new CapabilityDao());
 
 
     @POST
@@ -47,8 +51,8 @@ public class BandController {
     public Response addCapability(Capability capability) throws NameTooShortException, SQLException, FailedToCreateCapabilityException {
 
         try {
-            int capabilityId = bandService.addCapability(capability);
-            URI location = UriBuilder.fromPath("/admin/band/" + capabilityId).build();
+            int CapabilityId = capabilityService.addCapability(capability);
+            URI location = UriBuilder.fromPath("/admin/band/" + CapabilityId).build();
 
             return Response.created(location).build();
         } catch (FailedToCreateCapabilityException e) {
