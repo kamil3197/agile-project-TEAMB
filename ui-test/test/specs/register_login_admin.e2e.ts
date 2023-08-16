@@ -1,5 +1,6 @@
 import RegisterPage from '../pageobjects/register.page.js'; 
 import LoginPage from '../pageobjects/login.js'; 
+import { browser, expect } from '@wdio/globals';
 
 describe('Registration and Login Process', () => {
     it('Register as Admin || UnhappyPath', async () => {
@@ -7,7 +8,9 @@ describe('Registration and Login Process', () => {
       await RegisterPage.goToRegisterPage();
       await RegisterPage.fillRegistrationForm('kacperadmin@kainos.com', 'kacper', true);
       await RegisterPage.submitRegistrationForm(); 
+      await browser.pause(2000);
       expect(await RegisterPage.isErrorMessageVisible('Password must be at least 8 characters long.')).toBe(true);
+      
     });
 
     it('Register as Admin || HappyPath', async () => {
@@ -15,6 +18,7 @@ describe('Registration and Login Process', () => {
         await RegisterPage.goToRegisterPage();
         await RegisterPage.fillRegistrationForm('kacperadmin@kainos.com', 'Kacper1213!', true);
         await RegisterPage.submitRegistrationForm(); 
+        await browser.pause(2000);
         expect(await RegisterPage.isLoginPage()).toBe(true);
     });
 
@@ -58,7 +62,7 @@ describe('Registration and Login Process', () => {
         expect(await LoginPage.isErrorMessageVisible('Login failed! Please try again.')).toBe(true);
       });
 
-      it('Login as Edmin || HappyPath', async () => {
+      it('Login as Employee || HappyPath', async () => {
 
         await LoginPage.goToLoginPage();
         await LoginPage.fillLoginForm('kacperemployee@kainos.com', 'Kacper1213!');
