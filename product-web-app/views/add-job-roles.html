@@ -22,12 +22,16 @@
                 <label for="link">Sharepoint link</label>
                 <input type="text" id="link" name="link" class="form-control" value="{{ link }}" required>
             </div>
-            <div class="form-group">
-                <label for="band_id">band_id</label>
-                <input type="number" id="band_id" name="band_id" class="form-control" value="{{ band_id }}" required>
-            </div>
-            <button type="submit" id="submitButton">Submit</button>
-        </form>
+            <select name="band_id">
+                <option value="">Select a band</option>
+                {% for band in bands %}
+                  <option value="{{ band.id }}">{{ band.name }}</option>
+                {% endfor %}
+              </select>
+              <div class="d-flex justify-content-center align-items-center mt-4">
+                <button type="submit" id="submitButton" class="btn btn-custom-primary">Submit</button>
+              </div>
+            </form>
     </section>
 </div>
 

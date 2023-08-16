@@ -49,10 +49,10 @@ describe('JobRoleService', () => {
       const mock = new MockAdapter(axios);
 
       mock.onPost('http://localhost:8080/api/admin/job-roles', addJobRole).reply(201);
-      try{
+      try {
         await jobRolesService.createJobRoles(addJobRole);
       } catch {
-        assert.fail('exception shouldn\' be thrown')
+        assert.fail("exception shouldn' be thrown");
       }
     });
   });

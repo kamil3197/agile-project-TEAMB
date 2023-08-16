@@ -1,7 +1,6 @@
 package org.kainos.ea.db;
 
 import org.kainos.ea.cli.JobSpecification;
-import org.kainos.ea.exception.RoleNotExistException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,7 +14,11 @@ public class JobSpecificationDao {
     public Optional<JobSpecification> getJobSpecification(int role_id) throws SQLException {
         Connection c = databaseConnector.getConnection();
         Statement st = c.createStatement();
-        ResultSet rs = st.executeQuery("SELECT role_id, summary, sharepoint_link, job_role_title FROM Specifications INNER JOIN JobRoles ON role_id = job_role_id  Where id =" + role_id);
+        ResultSet rs = st.executeQuery("SELECT S.role_id, S.summary, S.sharepoint_link, JR.job_role_title, B.level, B.name\n" +
+                "        FROM Specifications S\n" +
+                "        INNER JOIN JobRoles JR ON S.role_id = JR.job_role_id\n" +
+                "        INNER JOIN Band B ON JR.band_id = B.id\n" +
+                "        WHERE S.id = " + role_id);
 
 
         if (rs.next()) {
@@ -23,7 +26,9 @@ public class JobSpecificationDao {
                     rs.getInt("role_id"),
                     rs.getString("job_role_title"),
                     rs.getString("summary"),
-                    rs.getString("sharepoint_link")));
+                    rs.getString("sharepoint_link"),
+                    rs.getInt("B.level"),
+                    rs.getString("B.name")));
         }
         return Optional.empty();
     }

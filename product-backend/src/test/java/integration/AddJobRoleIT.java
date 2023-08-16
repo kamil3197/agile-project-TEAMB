@@ -16,7 +16,8 @@ public class AddJobRoleIT {
         AddJobRole addJobRole = new AddJobRole(
                 "tomekk",
                 "test",
-                "Bloggs"
+                "Bloggs",
+                1
         );
         Response response = RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -34,7 +35,8 @@ public class AddJobRoleIT {
                         "weqweeqwweqeqweqwqweeqwqweqweeqwqweqweweqqwe" +
                         "qweqweeqwqweqweqweqweqweeqwqwekkasdsadasdasdasdsasaasdasdsaasdasd",
                 "test",
-                "Bloggs"
+                "Bloggs",
+                1
         );
         Response response = RestAssured.given()
                 .contentType(ContentType.JSON)

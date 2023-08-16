@@ -5,4 +5,5 @@ export default interface JobSpecification {
   summary: string;
   specificationLink: string;
   band_level: number;
+  band_name: string;
 }

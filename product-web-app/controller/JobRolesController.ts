@@ -3,6 +3,7 @@ import xss from 'xss';
 import { JobRole } from '../model/jobRole.js';
 import JobRoleService from '../service/jobRolesService.js';
 import { AddJobRole } from '../model/addJobRole.js';
+import BandService from '../service/bandService.js';
 
 export default class JobRolesController {
   private jobRoleServiceClass = new JobRoleService();
@@ -19,7 +20,13 @@ export default class JobRolesController {
     });
 
     app.get('/admin/job-roles', async (req: Request, res: Response) => {
-      res.render('add-job-roles', { title: 'Add Job Role' });
+      const bandService = new BandService();
+      try {
+        const bands = await bandService.getAllBands();
+        res.render('add-job-roles', { title: 'Add Job Role', bands });
+      } catch (e) {
+        res.status(500).send('Error fetching bands');
+      }
     });
 
     app.post('/admin/job-roles', async (req: Request, res: Response) => {
@@ -32,7 +39,7 @@ export default class JobRolesController {
             roleTitle: xss(data.roleTitle),
             summary: xss(data.summary),
             link: xss(data.link),
-            band_id: data.band_id
+            band_id: data.band_id,
           };
           await jobRoleService.createJobRoles(sanitizedData);
           res.locals.successMessage = 'Successfuly added job role';

@@ -7,7 +7,10 @@ import org.kainos.ea.client.FailedToCreateBandException;
 import org.kainos.ea.db.BandDao;
 import org.kainos.ea.exception.NameTooShortException;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -19,7 +22,6 @@ import java.sql.SQLException;
 public class BandController {
 
     private BandService bandService = new BandService(new BandDao());
-
 
 
     @POST
@@ -35,6 +37,18 @@ public class BandController {
         } catch (FailedToCreateBandException e) {
             System.err.println(e.getMessage());
 
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/admin/getBand")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllBands() {
+        try {
+            return Response.ok(BandService.getAllBands()).build();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
             return Response.serverError().build();
         }
     }

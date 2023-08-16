@@ -13,7 +13,7 @@
                                 <p class="text-danger">summary is too long ({{ jobSpecification.summary.length }} characters)</p>
                             {% else %}
                                 <p>Summary: {{ jobSpecification.summary }}</p>
-                                <p>Band level: {{ jobSpecification.band_level }}</p>
+                                <p>Band: {{ jobSpecification.band_level }} - {{ jobSpecification.band_name }}</p>
                             {% endif %}
                         </div>
                         <div class="col-md-6">
