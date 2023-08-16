@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 @Api("Job Roles API")
 @Path("/api")
 public class JobSpecificationController {
-    private  JobSpecificationService jobSpecificationService = new JobSpecificationService(new JobSpecificationDao());
+    private JobSpecificationService jobSpecificationService = new JobSpecificationService(new JobSpecificationDao());
 
     @GET
     @Path("/job-specification/{id}")
