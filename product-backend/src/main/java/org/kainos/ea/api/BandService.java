@@ -1,7 +1,9 @@
 package org.kainos.ea.api;
 
 import org.kainos.ea.cli.Band;
+import org.kainos.ea.cli.Capability;
 import org.kainos.ea.client.FailedToCreateBandException;
+import org.kainos.ea.client.FailedToCreateCapabilityException;
 import org.kainos.ea.db.BandDao;
 
 
@@ -25,5 +27,15 @@ public class BandService {
             throw new SQLException();
         }
 
+    }
+    public int addCapability(Capability capability) throws FailedToCreateCapabilityException, SQLException{
+        try {
+            OptionalInt id = bandDao.addCapability(capability);
+
+            return id.orElseThrow(() -> new FailedToCreateCapabilityException());
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            throw new SQLException(e);
+        }
     }
 }

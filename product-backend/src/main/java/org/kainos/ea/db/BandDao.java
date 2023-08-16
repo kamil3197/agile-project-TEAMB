@@ -1,6 +1,7 @@
 package org.kainos.ea.db;
 
 import org.kainos.ea.cli.Band;
+import org.kainos.ea.cli.Capability;
 
 import java.sql.*;
 import java.util.OptionalInt;
@@ -30,4 +31,24 @@ public class BandDao {
         }
         return OptionalInt.empty();
     }
+
+    public OptionalInt addCapability(Capability capability) throws  SQLException{
+        Connection c = databaseConnector.getConnection();
+        String insertStatement = "INSERT INTO Capability (capabilityName, leadName, leadPhoto, leadMessage) VALUES (?, ?, ?, ?)";
+        PreparedStatement st = c.prepareStatement(insertStatement, Statement.RETURN_GENERATED_KEYS);
+        st.setString(1,capability.getCapabilityName());
+        st.setString(2,capability.getLeadName());
+        st.setBlob(3,capability.getLeadPhoto());
+        st.setString(4,capability.getLeadMessage());
+
+        st.executeUpdate();
+
+        ResultSet rs = st.getGeneratedKeys();
+
+        if (rs.next()) {
+            return OptionalInt.of(rs.getInt(1));
+        }
+        return OptionalInt.empty();
+    }
 }
+

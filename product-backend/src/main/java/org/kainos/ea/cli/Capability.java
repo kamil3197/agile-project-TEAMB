@@ -1,12 +1,14 @@
 package org.kainos.ea.cli;
 
+import java.sql.Blob;
+
 public class Capability {
     private int capabilityId;
     private String capabilityName;
     private String leadName;
-    private byte[] leadPhoto;
+    private Blob leadPhoto;
 
-    public Capability(int capabilityId, String capabilityName, String leadName, byte[] leadPhoto, String leadMessage) {
+    public Capability(int capabilityId, String capabilityName, String leadName, Blob leadPhoto, String leadMessage) {
         this.capabilityId = capabilityId;
         this.capabilityName = capabilityName;
         this.leadName = leadName;
@@ -38,11 +40,11 @@ public class Capability {
         this.leadName = leadName;
     }
 
-    public byte[] getLeadPhoto() {
+    public Blob getLeadPhoto() {
         return leadPhoto;
     }
 
-    public void setLeadPhoto(byte[] leadPhoto) {
+    public void setLeadPhoto(Blob leadPhoto) {
         this.leadPhoto = leadPhoto;
     }
 

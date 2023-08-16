@@ -38,4 +38,20 @@ public class BandController {
             return Response.serverError().build();
         }
     }
+    @POST
+    @Path("/admin/capabilities")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addCapability(Band band) throws NameTooShortException, SQLException, FailedToCreateBandException {
+
+        try {
+            int BandId = bandService.createBand(band);
+            URI location = UriBuilder.fromPath("/admin/band/" + BandId).build();
+
+            return Response.created(location).build();
+        } catch (FailedToCreateBandException e) {
+            System.err.println(e.getMessage());
+
+            return Response.serverError().build();
+        }
+    }
 }
