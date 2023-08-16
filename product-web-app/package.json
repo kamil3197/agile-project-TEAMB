@@ -18,8 +18,9 @@
     "dotenv": "16.3.1",
     "express": "4.18.2",
     "express-session": "1.17.3",
-    "nodemon": "^3.0.1",
-    "nunjucks": "3.2.4"
+    "nunjucks": "3.2.4",
+    "xss": "^1.0.14",
+    "nodemon": "^3.0.1"
   },
   "devDependencies": {
     "@types/axios-mock-adapter": "1.10.0",
