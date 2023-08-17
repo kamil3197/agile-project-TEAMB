@@ -31,7 +31,7 @@ public class AuthController {
     @POST
     @Path("/auth/register")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Creates new employee/admin")
+    @ApiOperation(value = "Creates new employee/admin account")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successfully added new employee/admin to the database"),
             @ApiResponse(code = 400, message = "Failed to add new employee/admin to the database"),

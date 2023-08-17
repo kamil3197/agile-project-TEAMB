@@ -17,7 +17,7 @@ import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.sql.SQLException;
 
-@Api("Admin API")
+@Api("Band API")
 @Path("/api")
 public class BandController {
 

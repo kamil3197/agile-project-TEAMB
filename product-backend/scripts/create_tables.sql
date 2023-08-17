@@ -20,4 +20,12 @@ CREATE TABLE IF NOT EXISTS Specifications (
     summary VARCHAR(500),
     sharepoint_link VARCHAR(500),
     FOREIGN KEY (role_id) REFERENCES JobRoles(job_role_id)
-)
+);
+
+CREATE TABLE IF NOT EXISTS  Capability (
+    capability_id INT PRIMARY KEY AUTO_INCREMENT,
+    capability_name VARCHAR(80),
+    lead_name VARCHAR(80),
+    lead_photo MEDIUMBLOB,
+    lead_message VARCHAR(500)
+);
