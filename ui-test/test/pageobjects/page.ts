@@ -22,4 +22,8 @@ export default class Page {
   public goToLoginPage() {
     return browser.url(`${this.baseUrl}/auth/login`);
   }
+
+  public goToAddBand() {
+    return browser.url(`${this.baseUrl}/admin/add-band`);
+  }
 }
