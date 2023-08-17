@@ -26,7 +26,7 @@ public class CapabilityController {
             return Response.ok(capabilityService.getAllCapabilities()).build();
         } catch (FailedToGetCapabilitiesException e) {
             logger.severe(e.getMessage());
-            return Response.serverError().build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 }
