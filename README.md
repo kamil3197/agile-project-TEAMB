@@ -8,7 +8,7 @@
 - docker-compose
 - Rancher Desktop
 - Google Chrome
-
+ja
 
 ### Setup
 
