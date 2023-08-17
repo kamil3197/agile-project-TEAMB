@@ -24,13 +24,12 @@ import java.util.logging.Logger;
 @Api("Kainos new user`s API")
 @Path("/api")
 public class AuthController {
-    private static final String CREATE = "/auth/register";
     private final AuthService authService = new AuthService(new AuthDao(), new RegisterValidator(), new DateService());
     Logger logger = Logger.getLogger(this.getClass().getName());
 
 
     @POST
-    @Path(CREATE)
+    @Path("/auth/register")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Creates new employee/admin")
     @ApiResponses(value = {

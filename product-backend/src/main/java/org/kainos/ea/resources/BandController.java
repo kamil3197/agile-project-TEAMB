@@ -1,6 +1,9 @@
 package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.kainos.ea.api.BandService;
 import org.kainos.ea.cli.Band;
 import org.kainos.ea.client.FailedToCreateBandException;
@@ -25,6 +28,12 @@ public class BandController {
     @POST
     @Path("/admin/band")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Creates new band")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successfully added new band to the database"),
+            @ApiResponse(code = 400, message = "Failed to add new band to the database"),
+            @ApiResponse(code = 500, message = "Failed to connect with the database")
+    })
     public Response createBand(Band band) throws NameTooShortException, SQLException, FailedToCreateBandException {
 
         try {
