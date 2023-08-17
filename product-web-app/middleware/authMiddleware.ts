@@ -3,41 +3,29 @@ import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export default class AuthMiddleware {
-  private secret: string | undefined;
+  private secret: string;
 
-  constructor () {
-    this.secret = process.env.jwt_secret;
+  constructor() {
+    this.secret = process.env.jwt_secret || '';
   }
 
   async authorisation(req: Request, res: Response, next: NextFunction) {
-    // console.log("***********************************************")
-    // console.log(req.path)
-    // console.log(req.path == '/auth/login')
     if (req.path === '/auth/login' || req.path === '/auth/register') {
       return next();
     }
 
-    const { JWT } = req.cookies;
-    // console.log("***********************************************")
-    // console.log(JWT)
-    if (JWT === undefined || this.secret === undefined) {
+    const { JWT } = req.cookies;    
+    if (JWT === undefined) {
       res.locals.errormessage = 'Token issue, please login.';
       return res.redirect('/auth/login');
     }
 
     const decoded: JwtPayload | string = jwt.verify(JWT, this.secret);
-    // console.log("***********************************************")
-    // console.log(decoded)
     if (typeof decoded !== 'object' || !decoded.user_role) {
       res.locals.errormessage = 'Decode issue, please login.';
       return res.redirect('/auth/login');
     }
 
-    // console.log("***********************************************")
-    // console.log(decoded.user_role)
-    // console.log(req.path.split('/')[0])
-    // console.log(req.path.split('/')[1])
-    // console.log(req.path.split('/')[2])
     if (req.path.split('/')[1] === 'admin') {
       if (decoded.user_role !== 'Admin') {
         res.locals.errormessage = 'Admin privilege required';
@@ -53,6 +41,7 @@ export default class AuthMiddleware {
     try {
       axios.defaults.headers.common.Authorization = req.cookies.JWT;
       return next();
+
     } catch {
       axios.defaults.headers.common.Authorization = null;
       return next();
@@ -78,8 +67,10 @@ export default class AuthMiddleware {
       } else {
         isAdmin = false;
       }
+
       res.locals.isAdmin = isAdmin;
       return next();
+      
     } catch {
       res.locals.isAdmin = false;
       return next();
