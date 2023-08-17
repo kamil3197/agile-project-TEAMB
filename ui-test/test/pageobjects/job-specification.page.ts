@@ -1,21 +1,26 @@
 import Page from './page.js';
 
-class JobSpecificationPage extends Page {  
+export class JobSpecificationPage extends Page {  
 
-    private pdfTitle = $('//*[@id="id__3"]').getText();
-
-    async isJobSpecNotEmpty() {
-        const jobSpecBox = await $('//*[@id="jobSpec"]/div[1]/div[2]/p');
-        
-          if ((await jobSpecBox.getText()).trim().length === 0) {
+    async isJobSpecEmpty() {
+        try {
+        const jobSpecBox = await $('//*[@id="jobSpec"]/ul/li/div/div[1]/p[2]');
+         return ((await jobSpecBox.getText()).trim().length === 0);
+        } catch (error) {
             return false;
-        } else {
-            return true;
         }
     }
 
     async clickOnSharepointLink() {
-        await $('//*[@id="jobSpec"]/div[1]/div[1]/div/p/a').click();
+        await $('//*[@id="jobSpec"]/ul/li/div/div[2]/p[1]/a').click();
+    }
+
+    async getHrefDomain() {
+        const buttonElement = await $('//*[@id="jobSpec"]/ul/li/div/div[2]/p[1]/a');
+        const hrefDomain = await buttonElement.getProperty('href');
+        console.log('lolxd')
+        console.log(typeof(hrefDomain));
+        return  hrefDomain
     }
     }
     export default new JobSpecificationPage();

@@ -1,31 +1,19 @@
 import Page from './page.js';
 
 
-class ViewJobRolesPage extends Page {
+export class ViewJobRolesPage extends Page {
 
-  private tableWithJobs = $$('#orders > table');
-  private sectionWithJobs = $('#orders');
-  
-  async isJobsTableVisible() {
+    async isJobsTableVisible() {
     try { 
-        return (await this.sectionWithJobs).isDisplayed();
+        const sectionWithJobs = await $('//*[@id="orders"]/h2');
+        return (await sectionWithJobs.getText()).includes('job-roles');
     } catch (error) { 
       return false;
     }
   }
   
   async viewSpecificJob(jobNumber: number) {
-    let jobViewName = this.tableWithJobs[jobNumber].getText();
-    await this.tableWithJobs[jobNumber].click();
-  }
-  
-  async isTitleCorrect() {
-    const title = await browser.getTitle();
-    return title === 'Job Roles'; // Update the expected title
-  }
-
-  async engineeringPage(){
-    await $('//*[@id="orders"]/table/tbody/tr[1]/td/a').click();
+    return browser.url(`${this.baseUrl}/job-specification/` + jobNumber);
   }
 }
 
