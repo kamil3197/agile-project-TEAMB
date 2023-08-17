@@ -11,11 +11,11 @@ export default class AuthMiddleware {
       return next();
     }
 
-    const secret = 'NOT_HARDCODED_SECRET';
+    const secret = process.env.jwt_secret;
     const { JWT } = req.cookies;
     // console.log("***********************************************")
     // console.log(JWT)
-    if (JWT === undefined || JWT === null) {
+    if (JWT === undefined || secret === undefined) {
       res.locals.errormessage = 'Token issue, please login.';
       return res.redirect('/auth/login');
     }
@@ -23,17 +23,8 @@ export default class AuthMiddleware {
     const decoded: JwtPayload | string = jwt.verify(JWT, secret);
     // console.log("***********************************************")
     // console.log(decoded)
-    if (typeof decoded !== 'object' || !decoded.exp || !decoded.user_role) {
+    if (typeof decoded !== 'object' || !decoded.user_role) {
       res.locals.errormessage = 'Decode issue, please login.';
-      return res.redirect('/auth/login');
-    }
-
-    const expirationTime = decoded.exp * 1000;
-    const currentTime = Date.now();
-    // console.log("***********************************************")
-    // console.log(currentTime > expirationTime)
-    if (currentTime > expirationTime) {
-      res.locals.errormessage = 'Token expired, please login';
       return res.redirect('/auth/login');
     }
 
@@ -59,6 +50,34 @@ export default class AuthMiddleware {
       return next();
     } catch {
       axios.defaults.headers.common.Authorization = null;
+      return next();
+    }
+  }
+
+  async navbarSetup(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { JWT } = req.cookies;
+      let decoded: JwtPayload | string = '';
+      const secret = process.env.jwt_secret;
+      if (JWT !== undefined && secret !== undefined) {
+        decoded = jwt.verify(JWT, secret);
+      }
+
+      if (typeof decoded !== 'object' || !decoded.user_role) {
+        res.locals.isAdmin = false;
+        return next();
+      }
+
+      let isAdmin: boolean;
+      if (decoded.user_role === 'Admin') {
+        isAdmin = true;
+      } else {
+        isAdmin = false;
+      }
+      res.locals.isAdmin = isAdmin;
+      return next();
+    } catch {
+      res.locals.isAdmin = false;
       return next();
     }
   }

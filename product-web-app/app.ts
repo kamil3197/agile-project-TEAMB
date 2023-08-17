@@ -6,12 +6,14 @@ import session from 'express-session';
 import nunjucks from 'nunjucks';
 import axios from 'axios';
 import cookieParser from 'cookie-parser';
+import 'dotenv/config';
 
 import JobSpecificationController from './controller/JobSpecificationController.js';
 import BandController from './controller/bandController.js';
 import JobRolesController from './controller/JobRolesController.js';
 import AuthController from './controller/authController.js';
-import AuthMiddleware from './middleware/auth.js';
+import AuthMiddleware from './middleware/authMiddleware.js';
+
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -40,7 +42,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: 'NOT_HARDCODED_SECRET',
+    secret: 'jwt_secret',
     cookie: { maxAge: 3_600_000 },
   }),
 );
@@ -58,6 +60,7 @@ app.use('/public', express.static(path.join(dirname, 'public')));
 const authMiddleware = new AuthMiddleware();
 app.use(authMiddleware.addToken);
 app.use(authMiddleware.authorisation);
+app.use(authMiddleware.navbarSetup);
 
 const bandController = new BandController();
 bandController.initializeRoutes(app);

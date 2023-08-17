@@ -18,10 +18,10 @@
     {{title}}
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {% if role == "Admin" %} 
+    {% if (isAdmin) %} 
+    <a class="dropdown-item" href="/admin/add-band">Add band</a>
     {% endif %}
     <a class="dropdown-item" href="/home">Home Page</a>
-    <a class="dropdown-item" href="/admin/add-band">Add band</a>
     <a class="dropdown-item" href="/job-roles">Job Roles</a>
   </div>
 </nav>
