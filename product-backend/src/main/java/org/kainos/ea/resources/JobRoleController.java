@@ -1,10 +1,12 @@
 package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
+import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.api.JobRoleService;
 import org.kainos.ea.cli.AddJobRole;
 import org.kainos.ea.client.FailedToCreateJobRoleException;
 import org.kainos.ea.client.FailedToGetJobRolesException;
+import org.kainos.ea.db.CapabilityDao;
 import org.kainos.ea.db.JobRoleDao;
 
 import javax.validation.Valid;
@@ -21,6 +23,7 @@ import java.util.OptionalInt;
 @Path("/api")
 public class JobRoleController {
     private JobRoleService jobRoleService = new JobRoleService(new JobRoleDao());
+    private CapabilityService capabilityService = new CapabilityService(new CapabilityDao());
 
     @GET
     @Path("/job-roles")
