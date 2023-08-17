@@ -1,5 +1,5 @@
 insert into Band(name, level, responsibilities) values
-    ('manager', 6, 'managing')
+    ('manager', 6, 'managing');
 
 -- US001: view job roles
 insert into JobRoles(job_role_id, job_role_title, band_id) values
