@@ -12,7 +12,7 @@ export default class JobSpecificationController {
       } catch (e) {
         res.redirect('/job-roles');
       }
-      res.render('job-specification', { jobSpecification: data });
+      res.render('job-specification', { jobSpecification: data, title: 'Job Roles' });
     });
   }
 }

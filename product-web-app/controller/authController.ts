@@ -15,7 +15,7 @@ function authController(app: Application) {
     try {
       const authService = new AuthService();
       await authService.register(data);
-      res.redirect('auth/login');
+      res.redirect('/auth/login');
     } catch (error) {
       res.locals.errormessage = error instanceof Error ? error.message : String(error);
       if (req.body.email.endsWith('@kainos.com')) {
@@ -39,15 +39,11 @@ function authController(app: Application) {
         maxAge: 3600000,
       });
 
-      res.redirect('/home');
+      res.redirect('/');
     } catch (error) {
       res.locals.errormessage = error instanceof Error ? error.message : String(error);
       res.render('auth/login', req.body);
     }
-  });
-
-  app.get('/home', async (req, res) => {
-    res.render('home');
   });
 }
 
