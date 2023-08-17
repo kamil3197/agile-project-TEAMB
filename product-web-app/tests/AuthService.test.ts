@@ -29,7 +29,7 @@ describe('AuthService', () => {
       const mock = new MockAdapter(axios);
       const userId = 1;
 
-      mock.onPost('http://localhost:8080/api/auth/register', user).reply(200, userId);
+      mock.onPost('http://localhost:8080/api/auth/register', user).reply(201, userId);
 
       const response = await authService.register(user);
       expect(response).to.equal(userId);

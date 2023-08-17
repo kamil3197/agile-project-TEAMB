@@ -4,4 +4,5 @@ public class FaliedToCreateUserWrongInputException extends Exception {
     public FaliedToCreateUserWrongInputException(String message) {
         super(message);
     }
+
 }

@@ -56,8 +56,8 @@ usage-data-config.json
 .idea
 
 
-scripts/create_db_local_exe.sql
-scripts/example_data_local_exe.sql
+**/create_db_local_exe.sql
+**/example_data_local_exe.sql
 
 # Directories potentially created on remote AFP share
 .AppleDB

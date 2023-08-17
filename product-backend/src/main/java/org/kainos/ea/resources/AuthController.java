@@ -41,7 +41,9 @@ public class AuthController {
     public Response createNewUser(RequestUser user) {
         try {
             authService.createNewUser(user);
-            return Response.ok().build();
+            return Response.status(Response.Status.CREATED)
+                    .entity("New user created successfully")
+                    .build();
         } catch (FaliedToCreateUserWrongInputException | FailedToCreateNewUserException e) {
             logger.severe(e.getMessage());
             return Response.status(Response.Status.BAD_REQUEST).build();

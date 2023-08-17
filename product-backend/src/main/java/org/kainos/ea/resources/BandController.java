@@ -29,7 +29,6 @@ public class BandController {
     @Path("/admin/band")
     @Produces(MediaType.APPLICATION_JSON)
     public Response createBand(Band band) throws NameTooShortException, SQLException, FailedToCreateBandException {
-
         try {
             int BandId = bandService.createBand(band);
             URI location = UriBuilder.fromPath("/admin/band/" + BandId).build();

@@ -12,7 +12,8 @@ import java.util.Optional;
 public class JobSpecificationDao {
     private DatabaseConnector databaseConnector = new DatabaseConnector();
 
-    public Optional<JobSpecification> getJobSpecification(int role_id) throws SQLException, RoleNotExistException {
+    public Optional<JobSpecification> getJobSpecification(int role_id) throws SQLException,
+            RoleNotExistException {
         Connection c = databaseConnector.getConnection();
         Statement st = c.createStatement();
         ResultSet rs = st.executeQuery("SELECT S.role_id, S.summary, S.sharepoint_link, JR.job_role_title, B.level, B.name\n" +
