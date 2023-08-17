@@ -10,6 +10,7 @@ import JobSpecificationController from './controller/JobSpecificationController.
 import BandController from './controller/bandController.js';
 import JobRolesController from './controller/JobRolesController.js';
 import authController from './controller/authController.js';
+import CapabilityController from './controller/capabilityController.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -71,3 +72,4 @@ app.get('/', async (req, res) => {
 });
 
 authController(app);
+new CapabilityController().init(app);
