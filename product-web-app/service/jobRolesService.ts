@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { JobRole } from '../model/jobRole.js';
+import { AddJobRole } from '../model/addJobRole.js';
 
 export default class JobRoleService {
   private API_URL: string;
@@ -14,6 +15,14 @@ export default class JobRoleService {
       return response.data;
     } catch (e) {
       throw new Error('Error jobRoleService');
+    }
+  }
+
+  async createJobRoles(addJobRole: AddJobRole): Promise<void> {
+    try {
+      await axios.post(`${this.API_URL}/admin/job-roles`, addJobRole);
+    } catch (e) {
+      throw new Error('Could not create job role');
     }
   }
 }
