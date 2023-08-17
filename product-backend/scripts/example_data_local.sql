@@ -1,10 +1,13 @@
+insert into Band(name, level, responsibilities) values
+    ('manager', 6, 'managing');
+
 -- US001: view job roles
-insert into JobRoles(job_role_id, job_role_title) values
-    (1,'Engineering'),
-    (2,'Engineering, Strategy and Planning'),
-    (3,'Architecture'),
-    (4,'Testing and Quality Assurance'),
-    (5,'Product Specialist');
+insert into JobRoles(job_role_id, job_role_title, band_id) values
+    (1,'Engineering', 1),
+    (2,'Engineering, Strategy and Planning', 1),
+    (3,'Architecture', 1),
+    (4,'Testing and Quality Assurance', 1),
+    (5,'Product Specialist', 1);
 
 -- US024-register-system & US040-login-system
 insert into `User`(email, password, role) values

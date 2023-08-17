@@ -1,40 +1,41 @@
-{% include "./base/header.html" %}
-<div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
-  <section id="jobSpec" class="mt-4">
-    <h3 class="mb-4">{{ jobSpecification.roleTitle}}</h3>
-    {% if jobSpecification %}
-    <div class="specification border border-primary rounded mb-4 p-3">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4>Job specification</h4>
-        <div class="">
-          {% if jobSpecification.specificationLink.length > 1000 %}
-          <p class="text-danger">
-            Specification Link is too long ({{ jobSpecification.specificationLink.length }} characters)
-          </p>
-          {% else %}
-          <p>
-            <a href="{{ jobSpecification.specificationLink }}" target="_blank" class="btn btn-custom-primary"
-              >Link to sharepoint</a
-            >
-          </p>
-          {% endif %}
+    {% include "./base/header.html" %}
+    <div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
+      <section id="jobSpec" class="mt-4">
+        <h3 class="mb-4">{{ jobSpecification.roleTitle}}</h3>
+        {% if jobSpecification %}
+        <div class="specification border border-primary rounded mb-4 p-3">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4>Job specification</h4>
+            <div class="">
+              {% if jobSpecification.specificationLink.length > 1000 %}
+              <p class="text-danger">
+                Specification Link is too long ({{ jobSpecification.specificationLink.length }} characters)
+              </p>
+              {% else %}
+              <p>
+                <a href="{{ jobSpecification.specificationLink }}" target="_blank" class="btn btn-custom-primary"
+                  >Link to sharepoint</a
+                >
+              </p>
+              {% endif %}
+            </div>
+          </div>
+    
+          <div>
+            {% if jobSpecification.summary.length > 500 %}
+            <p class="text-danger">summary is too long ({{ jobSpecification.summary.length }} characters)</p>
+            {% else %}
+            <p>Summary: {{ jobSpecification.summary }}</p>
+            <p>Band: {{ jobSpecification.band_level }} - {{ jobSpecification.band_name }}</p>
+            {% endif %}
+          </div>
         </div>
-      </div>
-
-      <div>
-        {% if jobSpecification.summary.length > 500 %}
-        <p class="text-danger">summary is too long ({{ jobSpecification.summary.length }} characters)</p>
+        <div class="d-flex justify-content-center align-items-center mt-4">
+          <a href="/job-roles" class="btn btn-custom-primary">Back</a>
+        </div>
         {% else %}
-        <p>{{ jobSpecification.summary }}</p>
+        <div class="alert alert-danger" role="alert">There are no job specifications available...</div>
         {% endif %}
-      </div>
+      </section>
     </div>
-    <div class="d-flex justify-content-center align-items-center mt-4">
-      <a href="/job-roles" class="btn btn-custom-primary">Back</a>
-    </div>
-    {% else %}
-    <div class="alert alert-danger" role="alert">There are no job specifications available...</div>
-    {% endif %}
-  </section>
-</div>
-{% include "./base/footer.html" %}
+    {% include "./base/footer.html" %}
