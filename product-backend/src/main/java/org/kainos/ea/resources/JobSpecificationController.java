@@ -1,6 +1,9 @@
 package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.eclipse.jetty.http.HttpStatus;
 import org.kainos.ea.api.JobSpecificationService;
 import org.kainos.ea.client.FailedToInsertTokenException;
@@ -24,6 +27,13 @@ public class JobSpecificationController {
     @GET
     @Path("/job-specification/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "View the job specification of a job role by Id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched the job specification of a " +
+                    "job role from the database"),
+            @ApiResponse(code = 404, message = "Failed to fetch the job specification of a job role from the database"),
+            @ApiResponse(code = 500, message = "Failed to connect with the database")
+    })
     public Response getJobSpecification(@PathParam("id") int role_id) {
         try {
             return Response.status(HttpStatus.OK_200).entity(jobSpecificationService.getJobSpecification(role_id)).build();

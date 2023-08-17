@@ -2,11 +2,17 @@ package org.kainos.ea.cli;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 
 public class AddJobRole {
 
+    @ApiModelProperty(example = "Platform Engineer", required = true)
     private String roleTitle;
+    @ApiModelProperty(example = "As Platform Engineer (Associate) in Kainos, you’ll be responsible for automating, building\n" +
+            "and supporting modern digital service platforms using public cloud technology.", required = true)
     private String summary;
+
+    @ApiModelProperty(example = "https://kainossoftwareltd.sharepoint.com/people/Job%20Specifications/Forms/AllItems.aspx?id=%2Fpeople%2FJob%20Specifications%2FPlatforms%2FJob%20profile%20%2D%20Platform%20Engineer%20%28Associate%29%2Epdf&parent=%2Fpeople%2FJob%20Specifications%2FPlatforms&p=true&ga=1", required = true)
     private String link;
 
     private int band_id;
