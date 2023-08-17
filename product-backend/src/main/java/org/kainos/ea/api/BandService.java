@@ -3,6 +3,7 @@ package org.kainos.ea.api;
 import org.kainos.ea.cli.Band;
 import org.kainos.ea.cli.GetBand;
 import org.kainos.ea.client.FailedToCreateBandException;
+import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
 
 import java.sql.SQLException;
@@ -28,13 +29,13 @@ public class BandService {
         }
     }
 
-    public static List<GetBand> getAllBands() throws SQLException {
+    public List<GetBand> getAllBands() throws FailedToGetBandsException, SQLException {
         try {
-            List<GetBand> getBandList = BandDao.getAllBands();
+            List<GetBand> getBandList = bandDao.getAllBands();
             return getBandList;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            throw new SQLException();
+            throw new FailedToGetBandsException();
         }
     }
 }

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import org.kainos.ea.api.BandService;
 import org.kainos.ea.cli.Band;
 import org.kainos.ea.client.FailedToCreateBandException;
+import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
 import org.kainos.ea.exception.NameTooShortException;
 
@@ -44,10 +45,10 @@ public class BandController {
     @GET
     @Path("/admin/getBand")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllBands() {
+    public Response getAllBands() throws FailedToGetBandsException, SQLException {
         try {
-            return Response.ok(BandService.getAllBands()).build();
-        } catch (SQLException e) {
+            return Response.ok(bandService.getAllBands()).build();
+        } catch (FailedToGetBandsException e) {
             System.err.println(e.getMessage());
             return Response.serverError().build();
         }
