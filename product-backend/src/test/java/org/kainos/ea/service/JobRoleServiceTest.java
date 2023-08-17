@@ -26,11 +26,12 @@ public class JobRoleServiceTest {
     JobRoleDao jobRoleDao = mock(JobRoleDao.class);
     JobRoleService jobRoleService = new JobRoleService(jobRoleDao);
 
-    JobRole jobRole = new JobRole(1, "Tester and Quality Assurance");
+    JobRole jobRole = new JobRole(1, "Tester and Quality Assurance", 1, "manager");
     AddJobRole addJobRole = new AddJobRole(
             "tomekk",
             "test",
-            "Bloggs"
+            "Bloggs",
+            1
     );
 
     @Test

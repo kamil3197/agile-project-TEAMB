@@ -1,12 +1,16 @@
 package org.kainos.ea.db;
 
 import org.kainos.ea.cli.Band;
+import org.kainos.ea.cli.GetBand;
+import org.kainos.ea.client.FailedToGetBandsException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalInt;
 
 public class BandDao {
-    private DatabaseConnector databaseConnector = new DatabaseConnector();
+    private static DatabaseConnector databaseConnector = new DatabaseConnector();
 
     public OptionalInt createBand(Band band) throws SQLException {
         Connection c = databaseConnector.getConnection();
@@ -30,4 +34,23 @@ public class BandDao {
         }
         return OptionalInt.empty();
     }
+
+    public List<GetBand> getAllBands() throws FailedToGetBandsException, SQLException {
+        Connection c = databaseConnector.getConnection();
+        Statement st = c.createStatement();
+        ResultSet rs = st.executeQuery("SELECT id, name, level FROM Band;");
+        List<GetBand> getBandList = new ArrayList<>();
+
+        while (rs.next()) {
+            GetBand getBand = new GetBand(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getInt("level")
+            );
+            getBandList.add(getBand);
+        }
+
+        return getBandList;
+    }
+
 }

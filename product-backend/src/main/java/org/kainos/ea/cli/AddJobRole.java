@@ -9,14 +9,18 @@ public class AddJobRole {
     private String summary;
     private String link;
 
+    private int band_id;
+
     @JsonCreator
     public AddJobRole(
             @JsonProperty("roleTitle") String roleTitle,
             @JsonProperty("summary") String summary,
-            @JsonProperty("link") String link) {
+            @JsonProperty("link") String link,
+            @JsonProperty("band_id") int band_id) {
         this.roleTitle = roleTitle;
         this.summary = summary;
         this.link = link;
+        this.band_id = band_id;
     }
 
     public String getRoleTitle() {
@@ -42,5 +46,14 @@ public class AddJobRole {
     public void setLink(String link) {
         this.link = link;
     }
+
+    public int getBand_id() {
+        return band_id;
+    }
+
+    public void setBand_id(int band_id) {
+        this.band_id = band_id;
+    }
+
 }
 

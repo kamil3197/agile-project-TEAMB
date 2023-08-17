@@ -16,16 +16,22 @@
             </div>
             <div class="form-group">
                 <label for="summary">Summary</label>
-                <textarea rows="15" type="text" id="summary" name="summary" class="form-control" value="{{ summary }}" required></textarea>
+                <textarea rows="10" type="text" id="summary" name="summary" class="form-control" value="{{ summary }}" required></textarea>
             </div>
             <div class="form-group">
                 <label for="link">Sharepoint link</label>
                 <input type="text" id="link" name="link" class="form-control" value="{{ link }}" required>
             </div>
-            <div class="d-flex justify-content-center align-items-center mt-4">
+            <select name="band_id">
+                <option value="">Select a band</option>
+                {% for band in bands %}
+                  <option value="{{ band.id }}">{{ band.name }}</option>
+                {% endfor %}
+              </select>
+              <div class="d-flex justify-content-center align-items-center mt-4">
                 <button type="submit" id="submitButton" class="btn btn-custom-primary">Submit</button>
               </div>
-        </form>
+            </form>
     </section>
 </div>
 
