@@ -19,28 +19,27 @@ const capability = {
 describe('CapabilityService', () => {
   describe('addCapability', () => {
     it('should add a capability and return it in the response', async () => {
-        mock.onPost('http://localhost:8080/api/admin/capabilities').reply(200, capability);
-        
-        try {
-          const result = await capabilityService.addCapability(capability);
-          console.log('Result:', result); 
-          expect(result).to.deep.equal(capability);
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      });
+      mock.onPost('http://localhost:8080/api/admin/capabilities').reply(200, capability);
 
-      it('should throw an exception when a 500 error is returned', async () => {
-        const mock = new MockAdapter(axios);
-        mock.onPost('http://localhost:8080/api/admin/capabilities').reply(500);
-        
-        try {
-          await capabilityService.addCapability(capability);
-          expect.fail('Expected an error to be thrown.');
-        } catch (error: unknown) {
-          const axiosError = error as AxiosError; 
-          expect(axiosError.message).to.equal('Could not create the capability.');
-        }
-      });
+      try {
+        const result = await capabilityService.addCapability(capability);
+        console.log('Result:', result);
+        expect(result).to.deep.equal(capability);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+
+    it('should throw an exception when a 500 error is returned', async () => {
+      mock.onPost('http://localhost:8080/api/admin/capabilities').reply(500);
+
+      try {
+        await capabilityService.addCapability(capability);
+        expect.fail('Expected an error to be thrown.');
+      } catch (error: unknown) {
+        const axiosError = error as AxiosError;
+        expect(axiosError.message).to.equal('Could not create the capability.');
+      }
+    });
   });
 });
