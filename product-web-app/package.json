@@ -21,10 +21,8 @@
     "express-session": "1.17.3",
     "jsonwebtoken": "9.0.1",
     "nodemon": "^3.0.1",
-    "nunjucks": "3.2.4"
     "nunjucks": "3.2.4",
-    "xss": "^1.0.14",
-    "nodemon": "^3.0.1"
+    "xss": "^1.0.14"
   },
   "devDependencies": {
     "@types/axios-mock-adapter": "1.10.0",
