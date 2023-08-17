@@ -2,30 +2,30 @@
 <div class="container col-sm-10 col-md-8 col-lg-8 mt-4">
     <section id="form" class="mt-4">
         <h2>Enter capability details</h2>
-            {% if successMessage %}
-        <div class="alert alert-success" role="alert">{{successMessage}}</div>
-            {% endif %}
+        {% if successMessage %}
+            <div class="alert alert-success" role="alert">{{successMessage}}</div>
+        {% endif %}
 
-            {% if errorMessage %}
-        <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
-            {% endif %}
+        {% if errorMessage %}
+            <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+        {% endif %}
 
         <form action="/admin/capabilities" method="post">
             <div class="form-group">
                 <label for="leadName">Lead Name</label>
-                <input type="text" id="leadName" name="leadName" class="form-control" required>
+                <input type="text" id="leadName" name="leadName" class="form-control" value="{{ capability.leadName }}" required>
             </div>
             <div class="form-group">
-                <label for="leadPhoto">Lead Photo</label>
-                <input type="text" id="leadPhoto" name="leadPhoto" class="form-control" required>
+                <label for="leadPhoto">Lead Photo (Base64)</label>
+                <input type="text" id="leadName" name="leadName" class="form-control" value="{{ capability.leadPhoto }}" required>
             </div>
             <div class="form-group">
                 <label for="capabilityName">Capability Name</label>
-                <input type="text" id="capabilityName" name="capabilityName" class="form-control" required>
+                <input type="text" id="leadName" name="leadName" class="form-control" value="{{ capability.capabilityName}}" required>
             </div>
             <div class="form-group">
                 <label for="leadMessage">Lead Message</label>
-                <textarea rows="4" id="leadMessage" name="leadMessage" class="form-control" required></textarea>
+                <input type="text" id="leadName" name="leadName" class="form-control" value="{{ capability.leadMessage }}" required>
             </div>
             <div class="d-flex justify-content-center align-items-center mt-4">
                 <button type="submit" id="submitButton" class="btn btn-primary">Add Capability</button>

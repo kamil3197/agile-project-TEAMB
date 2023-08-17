@@ -29,7 +29,7 @@ public class CapabilityController {
 
         try {
             int CapabilityId = capabilityService.addCapability(capability);
-            URI location = UriBuilder.fromPath("/admin/band/" + CapabilityId).build();
+            URI location = UriBuilder.fromPath("/admin/capabilities/" + CapabilityId).build();
 
             return Response.created(location).build();
         } catch (FailedToCreateCapabilityException e) {

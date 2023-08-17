@@ -5,6 +5,7 @@ import 'dotenv/config';
 import session from 'express-session';
 import nunjucks from 'nunjucks';
 import axios from 'axios';
+import bodyParser from 'body-parser';
 
 import JobSpecificationController from './controller/JobSpecificationController.js';
 import BandController from './controller/bandController.js';
@@ -13,6 +14,8 @@ import authController from './controller/authController.js';
 import CapabilityController from './controller/capabilityController.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+
 
 const app = express();
 
@@ -50,6 +53,8 @@ declare module 'express-session' {
 
 app.set('view engine', 'html');
 app.use('/public', express.static(path.join(dirname, 'public')));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 const bandController = new BandController();
 bandController.initializeRoutes(app);

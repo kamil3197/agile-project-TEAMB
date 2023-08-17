@@ -10,7 +10,7 @@ export default class CapabilityService {
 
     async addCapability(capability: Capability): Promise<void> {
       try {
-        await axios.post(`${this.API_URL}/admin/capabilities`, capability);
+        await axios.post(`${this.API_URL}/admin/capabilities`,capability);
       
       } catch (e) {
         throw new Error('Could not create the capability.');

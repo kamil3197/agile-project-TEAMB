@@ -8,10 +8,7 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
-import org.kainos.ea.resources.AuthController;
-import org.kainos.ea.resources.JobRoleController;
-import org.kainos.ea.resources.JobSpecificationController;
-import org.kainos.ea.resources.BandController;
+import org.kainos.ea.resources.*;
 
 public class DropwizardWebServiceApplication extends Application<DropwizardWebServiceConfiguration> {
 
@@ -42,6 +39,7 @@ public class DropwizardWebServiceApplication extends Application<DropwizardWebSe
         environment.jersey().register(RolesAllowedDynamicFeature.class);
         environment.jersey().register(new JobRoleController());
         environment.jersey().register(new BandController());
+        environment.jersey().register(new CapabilityController());
 
     }
 }
