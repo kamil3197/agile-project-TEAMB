@@ -2,9 +2,7 @@ import Page from './page.js';
 
 export class RegisterPage extends Page {  
 
-
-
-async fillRegistrationForm(email, password, isAdmin: boolean) {
+  async fillRegistrationForm(email, password, isAdmin: boolean) {
     await $('//*[@id="email"]').setValue(email);
     await $('//*[@id="password"]').setValue(password);
     if (isAdmin) {

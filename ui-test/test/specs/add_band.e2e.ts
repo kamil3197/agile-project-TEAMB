@@ -32,5 +32,4 @@ describe('Adding a new band', () => {
       });
 
 
-
 });
