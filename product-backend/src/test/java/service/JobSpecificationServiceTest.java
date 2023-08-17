@@ -7,6 +7,8 @@ import org.kainos.ea.client.FailedToInsertTokenException;
 import org.kainos.ea.client.FaliedToCreateUserWrongInputException;
 import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.db.JobSpecificationDao;
+import org.kainos.ea.exception.DatabaseConnectionException;
+import org.kainos.ea.exception.RoleNotExistException;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -29,7 +31,7 @@ public class JobSpecificationServiceTest {
 
 
     @Test
-    void getJobSpecification_shouldReturnSpecification_whenDaoReturnsSpecification() throws SQLException, FailedToInsertTokenException.DatabaseConnectionException, IOException, FaliedToCreateUserWrongInputException.RoleNotExistException {
+    void getJobSpecification_shouldReturnSpecification_whenDaoReturnsSpecification() throws SQLException, DatabaseConnectionException, IOException, RoleNotExistException {
         int roleId = 1;
         JobSpecification specification_list = new JobSpecification(1,"test","test","test");
 
@@ -39,7 +41,8 @@ public class JobSpecificationServiceTest {
 
     }
     @Test
-    void getJobSpecification_shouldThrowException_whenDaoThrowsException() throws SQLException,  IOException, FaliedToCreateUserWrongInputException.RoleNotExistException {
+    void getJobSpecification_shouldThrowException_whenDaoThrowsException() throws SQLException,
+            IOException, RoleNotExistException {
         int roleId = 1;
         Mockito.when(jobSpecificationDao.getJobSpecification(roleId)).thenThrow(SQLException.class);
         assertThrows(SQLException.class, () -> jobSpecificationService.getJobSpecification(roleId));
@@ -47,10 +50,10 @@ public class JobSpecificationServiceTest {
     }
 
     @Test
-    void getJobSpecification_shouldThrowUserDoesNotExistException_whenDaoReturnsNull() throws SQLException, FailedToInsertTokenException.DatabaseConnectionException, IOException, FaliedToCreateUserWrongInputException.RoleNotExistException {
+    void getJobSpecification_shouldThrowUserDoesNotExistException_whenDaoReturnsNull() throws SQLException, DatabaseConnectionException, IOException, RoleNotExistException {
         int roleId = -1;
-        Mockito.when(jobSpecificationDao.getJobSpecification(roleId)).thenThrow(FaliedToCreateUserWrongInputException.RoleNotExistException.class);
-        assertThrows(FaliedToCreateUserWrongInputException.RoleNotExistException.class, () -> jobSpecificationService.getJobSpecification(roleId));
+        Mockito.when(jobSpecificationDao.getJobSpecification(roleId)).thenThrow(RoleNotExistException.class);
+        assertThrows(RoleNotExistException.class, () -> jobSpecificationService.getJobSpecification(roleId));
 
     }
 }

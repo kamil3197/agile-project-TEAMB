@@ -59,8 +59,6 @@ usage-data-config.json
 **/create_db_local_exe.sql
 **/example_data_local_exe.sql
 
-**/package-lock.json
-
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop

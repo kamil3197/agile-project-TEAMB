@@ -4,6 +4,8 @@ import org.kainos.ea.cli.JobSpecification;
 import org.kainos.ea.client.FailedToInsertTokenException;
 import org.kainos.ea.client.FaliedToCreateUserWrongInputException;
 import org.kainos.ea.db.JobSpecificationDao;
+import org.kainos.ea.exception.DatabaseConnectionException;
+import org.kainos.ea.exception.RoleNotExistException;
 
 import java.sql.SQLException;
 
@@ -14,8 +16,9 @@ public class JobSpecificationService {
         this.jobSpecificationDao = jobSpecificationDao;
     }
 
-    public JobSpecification getJobSpecification(int roleId) throws SQLException, FailedToInsertTokenException.DatabaseConnectionException, FaliedToCreateUserWrongInputException.RoleNotExistException {
-        return jobSpecificationDao.getJobSpecification(roleId).orElseThrow(FaliedToCreateUserWrongInputException.RoleNotExistException::new);
+    public JobSpecification getJobSpecification(int roleId) throws SQLException,
+            DatabaseConnectionException, RoleNotExistException {
+        return jobSpecificationDao.getJobSpecification(roleId).orElseThrow(RoleNotExistException::new);
     }
 }
 

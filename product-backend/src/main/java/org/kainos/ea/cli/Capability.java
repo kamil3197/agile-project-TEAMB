@@ -3,7 +3,7 @@ package org.kainos.ea.cli;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RequestCapability {
+public class Capability {
     private int capabilityId;
     private String capabilityName;
     private String leadName;
@@ -11,7 +11,7 @@ public class RequestCapability {
     private String leadMessage;
 
     @JsonCreator
-    public RequestCapability(
+    public Capability(
             @JsonProperty("capabilityId") int capabilityId,
             @JsonProperty("capabilityName") String capabilityName,
             @JsonProperty("leadName") String leadName,

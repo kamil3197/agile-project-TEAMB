@@ -1,6 +1,6 @@
 package org.kainos.ea.db;
 
-import org.kainos.ea.cli.RequestCapability;
+import org.kainos.ea.cli.Capability;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,16 +9,16 @@ import java.util.List;
 public class CapabilityDao {
     private DatabaseConnector databaseConnector = new DatabaseConnector();
 
-    public List<RequestCapability> getAllCapabilities() throws SQLException {
+    public List<Capability> getAllCapabilities() throws SQLException {
         Connection c = databaseConnector.getConnection();
         Statement st = c.createStatement();
         ResultSet rs = st.executeQuery("SELECT capability_id, capability_name, lead_name, " +
                 "lead_photo, lead_message FROM " +
                 "Capability;");
-        List<RequestCapability> capabilityList = new ArrayList<>();
+        List<Capability> capabilityList = new ArrayList<>();
 
         while (rs.next()) {
-            RequestCapability capability = new RequestCapability(
+            Capability capability = new Capability(
                     rs.getInt("capability_id"),
                     rs.getString("capability_name"),
                     rs.getString("lead_name"),

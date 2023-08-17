@@ -5,10 +5,4 @@ public class FaliedToCreateUserWrongInputException extends Exception {
         super(message);
     }
 
-    public static class RoleNotExistException extends Throwable {
-        public RoleNotExistException() {
-        super("Could not found JobSpecification.");
-
-        }
-    }
 }
