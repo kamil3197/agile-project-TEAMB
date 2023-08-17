@@ -110,7 +110,6 @@ public class AuthServiceTest {
         String jwtToken = JWT.create()
                 .withSubject(clientCredentials.getEmail())
                 .withClaim("user_id", user.getId())
-                .withClaim("user_email", user.getEmail())
                 .withClaim("user_role", user.getRole())
                 .withIssuedAt(new Date(currentTime))
                 .withExpiresAt(new Date(currentTime + 3_600_000))
