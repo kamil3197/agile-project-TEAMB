@@ -6,11 +6,11 @@ import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.cli.Band;
 import org.kainos.ea.cli.Capability;
 import org.kainos.ea.client.FailedToCreateBandException;
-import org.kainos.ea.client.FailedToCreateCapabilityException;
+import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
 import org.kainos.ea.db.CapabilityDao;
 import org.kainos.ea.exception.NameTooShortException;
-
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,7 +27,6 @@ public class BandController {
     private BandService bandService = new BandService(new BandDao());
     private CapabilityService capabilityService = new CapabilityService(new CapabilityDao());
 
-
     @POST
     @Path("/admin/band")
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +40,18 @@ public class BandController {
         } catch (FailedToCreateBandException e) {
             System.err.println(e.getMessage());
 
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/admin/getBand")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllBands() throws FailedToGetBandsException, SQLException {
+        try {
+            return Response.ok(bandService.getAllBands()).build();
+        } catch (FailedToGetBandsException e) {
+            System.err.println(e.getMessage());
             return Response.serverError().build();
         }
     }
