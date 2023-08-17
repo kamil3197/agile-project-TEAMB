@@ -3,7 +3,7 @@ import Capability from '../model/capability.js';
 
 const CapabilityExample: Capability[] = [
   {
-    id: 1,
+    capabilityId: 1,
     capabilityName: 'New capability',
     leadName: 'Sweet Kitty',
     leadPhoto:
@@ -11,7 +11,7 @@ const CapabilityExample: Capability[] = [
     leadMessage: 'Nice job!',
   },
   {
-    id: 2,
+    capabilityId: 2,
     capabilityName: 'New capability',
     leadName: 'Sweet Kitty',
     leadPhoto:
@@ -27,18 +27,18 @@ class CapabilityService {
     this.API_URL = process.env.API_URL || '';
   }
 
-  // async getAllCapabilities(): Promise<Capability[]> {
-  //   try {
-  //     const response = await axios.get(`${this.API_URL}/capability-leads`);
-  //     return response.data;
-  //   } catch (e) {
-  //     throw new Error('Error - failed to get capabilities');
-  //   }
-  // }
-
   async getAllCapabilities(): Promise<Capability[]> {
-    return CapabilityExample;
+    try {
+      const response = await axios.get(`${this.API_URL}/capability-leads`);
+      return response.data;
+    } catch (e) {
+      throw new Error('Error - failed to get capabilities');
+    }
   }
+
+  // async getAllCapabilities(): Promise<Capability[]> {
+  //   return CapabilityExample;
+  // }
 }
 
 export default CapabilityService;

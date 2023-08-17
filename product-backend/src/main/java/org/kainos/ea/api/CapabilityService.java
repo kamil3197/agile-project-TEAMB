@@ -20,11 +20,11 @@ public class CapabilityService {
         this.capabilityDao = capabilityDao;
     }
 
-    public List<Capability> getAllCapabilities() throws FailedToGetCapabilitiesException {
+    public List<RequestCapability> getAllCapabilities() throws FailedToGetCapabilitiesException {
         Logger logger = Logger.getLogger(this.getClass().getName());
 
         try {
-            List<Capability> capabilityList = capabilityDao.getAllCapabilities();
+            List<RequestCapability> capabilityList = capabilityDao.getAllCapabilities();
             return capabilityList;
         } catch (SQLException e) {
             logger.severe(e.getMessage());

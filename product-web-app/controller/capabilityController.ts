@@ -10,7 +10,7 @@ export default class CapabilityController {
       const capabilityService = this.capabilityServiceClass;
       try {
         const capabilities: Capability[] = await capabilityService.getAllCapabilities();
-        res.render('capability-leads', { capabilities, title: 'Capabilities' });
+        res.render('capability-leads', { capabilities, title: 'View capabilities' });
       } catch (e) {
         res.status(500).send('Error - failed to get capabilities');
       }

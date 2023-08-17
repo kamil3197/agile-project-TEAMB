@@ -3,14 +3,15 @@ package org.kainos.ea.cli;
 import java.sql.Blob;
 
 public class Capability {
-    private int id;
+    private int capabilityId;
     private String capabilityName;
     private String leadName;
-    private Blob leadPhoto;
+    private String leadPhoto;
     private String leadMessage;
 
-    public Capability(int id, String capabilityName, String leadName, Blob leadPhoto, String leadMessage) {
-        this.id = id;
+    public Capability(int capabilityId, String capabilityName, String leadName, String leadPhoto,
+                      String leadMessage) {
+        this.capabilityId = capabilityId;
         this.capabilityName = capabilityName;
         this.leadName = leadName;
         this.leadPhoto = leadPhoto;
@@ -18,11 +19,11 @@ public class Capability {
     }
 
     public int getId() {
-        return id;
+        return capabilityId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.capabilityId = capabilityId;
     }
 
     public String getCapabilityName() {
@@ -41,11 +42,11 @@ public class Capability {
         this.leadName = leadName;
     }
 
-    public Blob getLeadPhoto() {
+    public String getLeadPhoto() {
         return leadPhoto;
     }
 
-    public void setLeadPhoto(Blob leadPhoto) {
+    public void setLeadPhoto(String leadPhoto) {
         this.leadPhoto = leadPhoto;
     }
 

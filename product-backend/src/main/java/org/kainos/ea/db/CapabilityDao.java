@@ -13,19 +13,20 @@ import java.util.OptionalInt;
 public class CapabilityDao {
     private DatabaseConnector databaseConnector = new DatabaseConnector();
 
-    public List<Capability> getAllCapabilities() throws SQLException {
+    public List<RequestCapability> getAllCapabilities() throws SQLException {
         Connection c = databaseConnector.getConnection();
         Statement st = c.createStatement();
-        ResultSet rs = st.executeQuery("SELECT id, capability_name, lead_name, lead_photo, lead_message FROM " +
+        ResultSet rs = st.executeQuery("SELECT capability_id, capability_name, lead_name, " +
+                "lead_photo, lead_message FROM " +
                 "Capability;");
-        List<Capability> capabilityList = new ArrayList<>();
+        List<RequestCapability> capabilityList = new ArrayList<>();
 
         while (rs.next()) {
-            Capability capability = new Capability(
-                    rs.getInt("id"),
+            RequestCapability capability = new RequestCapability(
+                    rs.getInt("capability_id"),
                     rs.getString("capability_name"),
                     rs.getString("lead_name"),
-                    rs.getBlob("lead_photo"),
+                    rs.getString("lead_photo"),
                     rs.getString("lead_message")
             );
             capabilityList.add(capability);
