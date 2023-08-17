@@ -25,17 +25,16 @@ public class CapabilityController {
     @POST
     @Path("/admin/capabilities")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addCapability(Capability capability) throws NameTooShortException, SQLException, FailedToCreateCapabilityException {
+    public Response addCapability(Capability capability) throws SQLException {
 
         try {
             int CapabilityId = capabilityService.addCapability(capability);
             URI location = UriBuilder.fromPath("/admin/capabilities/" + CapabilityId).build();
-
             return Response.created(location).build();
+
         } catch (FailedToCreateCapabilityException e) {
             System.err.println(e.getMessage());
-
-            return Response.serverError().build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 }

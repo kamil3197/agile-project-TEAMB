@@ -21,9 +21,17 @@ CREATE TABLE IF NOT EXISTS Specifications (
     sharepoint_link VARCHAR(500),
     FOREIGN KEY (role_id) REFERENCES JobRoles(job_role_id)
     );
-
+--  band table
+CREATE TABLE IF NOT EXISTS Band (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    level INT(1) NOT NULL,
+    responsibilities varchar(255) NOT NULL,
+    capability_id INT,
+    FOREIGN KEY (capability_id) REFERENCES Capability (capability_id)
+);
   -- US013 add new capability
-    CREATE TABLE IF NOT EXISTS  `Capability` (
+    CREATE TABLE IF NOT EXISTS  Capability (
         capability_id INT PRIMARY KEY AUTO_INCREMENT,
         capability_name VARCHAR(80),
         lead_name VARCHAR(80),
