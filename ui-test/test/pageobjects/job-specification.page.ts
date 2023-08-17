@@ -11,16 +11,5 @@ export class JobSpecificationPage extends Page {
         }
     }
 
-    async clickOnSharepointLink() {
-        await $('//*[@id="jobSpec"]/ul/li/div/div[2]/p[1]/a').click();
-    }
-
-    async getHrefDomain() {
-        const buttonElement = await $('//*[@id="jobSpec"]/ul/li/div/div[2]/p[1]/a');
-        const hrefDomain = await buttonElement.getProperty('href');
-        console.log('lolxd')
-        console.log(typeof(hrefDomain));
-        return  hrefDomain
-    }
     }
     export default new JobSpecificationPage();

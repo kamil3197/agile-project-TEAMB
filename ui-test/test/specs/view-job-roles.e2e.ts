@@ -17,10 +17,4 @@ describe('View job-roles page and test its content', async () => {
         expect(await jobSpecificationPage.isJobSpecEmpty()).toBe(false);
     });
 
-    it.only('should be able to follow link to sharepoint || Happy Path', async () => {
-
-        await viewJobRolesPage.viewSpecificJob(1);
-        expect(jobSpecificationPage.getHrefDomain()).toMatch(/\*\.kainossoftwareltd.sharepoint.com\/\.\*/)
-    });
-
 });
