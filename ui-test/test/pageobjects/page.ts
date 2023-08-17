@@ -15,7 +15,7 @@ export default class Page {
     return browser.url(`${this.baseUrl}/auth/register`);
   }
 
-  public goToViewJobRolePage() {
+  public goToViewJobRolesPage() {
     return browser.url(`${this.baseUrl}/job-roles`);
   }
 
