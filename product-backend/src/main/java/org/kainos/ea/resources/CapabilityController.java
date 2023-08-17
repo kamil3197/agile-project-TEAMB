@@ -37,21 +37,4 @@ public class CapabilityController {
             return Response.serverError().build();
         }
     }
-
-    @POST
-    @Path("/admin/capabilities")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response addCapability(RequestCapability capability) throws FailedToGetCapabilitiesException,
-            SQLException {
-
-        try {
-            int capabilityId = capabilityService.addCapability(capability);
-
-            return Response.ok().build();
-        } catch (FailedToGetCapabilitiesException e) {
-            System.err.println(e.getMessage());
-
-            return Response.serverError().build();
-        }
-    }
 }
