@@ -3,11 +3,11 @@
     <section id="form" class="mt-4">
         <h2>Enter capability details</h2>
         {% if successMessage %}
-            <div class="alert alert-success" role="alert">{{successMessage}}</div>
+            <div class="alert alert-success" role="alert">{{ successMessage }}</div>
         {% endif %}
 
         {% if errorMessage %}
-            <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+            <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
         {% endif %}
 
         <form action="/admin/capabilities" method="post">
@@ -17,15 +17,15 @@
             </div>
             <div class="form-group">
                 <label for="leadPhoto">Lead Photo (Base64)</label>
-                <input type="text" id="leadName" name="leadName" class="form-control" value="{{ capability.leadPhoto }}" required>
+                <input type="text" id="leadPhoto" name="leadPhoto" class="form-control" value="{{ capability.leadPhoto }}" required>
             </div>
             <div class="form-group">
                 <label for="capabilityName">Capability Name</label>
-                <input type="text" id="leadName" name="leadName" class="form-control" value="{{ capability.capabilityName}}" required>
+                <input type="text" id="capabilityName" name="capabilityName" class="form-control" value="{{ capability.capabilityName }}" required>
             </div>
             <div class="form-group">
                 <label for="leadMessage">Lead Message</label>
-                <input type="text" id="leadName" name="leadName" class="form-control" value="{{ capability.leadMessage }}" required>
+                <input type="text" id="leadMessage" name="leadMessage" class="form-control" value="{{ capability.leadMessage }}" required>
             </div>
             <div class="d-flex justify-content-center align-items-center mt-4">
                 <button type="submit" id="submitButton" class="btn btn-primary">Add Capability</button>

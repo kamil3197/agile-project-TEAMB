@@ -15,8 +15,6 @@ import CapabilityController from './controller/capabilityController.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-
-
 const app = express();
 
 axios.defaults.baseURL = process.env.API_URL;

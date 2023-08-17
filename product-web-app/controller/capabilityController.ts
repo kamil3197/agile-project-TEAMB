@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express';
-import {Capability}  from '../model/capability.js';
-import CapabilityService  from '../service/capabilityService.js';
 import xss from 'xss';
+import { Capability } from '../model/capability.js';
+import CapabilityService from '../service/capabilityService.js';
 
 export default class CapabilityController {
   private capabilityServiceClass = new CapabilityService();
@@ -16,7 +16,7 @@ export default class CapabilityController {
       const capabilityService = this.capabilityServiceClass;
 
       try {
-        if (data.capabilityName && data.capabilityName !== undefined) {
+        if (data.capabilityName && data.leadName !== undefined) {
           const sanitizedData: Capability = {
             leadName: xss(data.leadName),
             capabilityName: xss(data.capabilityName),
