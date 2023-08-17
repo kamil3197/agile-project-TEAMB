@@ -30,6 +30,15 @@
           required
         />
       </div>
+      <div class="form-group">
+        <label for="capability">Capability</label>
+        <select id="capability" name="capability" class="form-control" required>
+          <option value="" disabled selected>Select a Capability</option>
+          {% for capability in capabilities %}
+            <option value="{{ capability.leadName }}">{{ capability.leadName }}</option>
+          {% endfor %}
+        </select>
+      </div>
       <div class="d-flex justify-content-center align-items-center mt-4">
         <button type="submit" id="submitButton" class="btn btn-custom-primary">Submit</button>
       </div>
