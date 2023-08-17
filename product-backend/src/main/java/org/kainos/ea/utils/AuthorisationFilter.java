@@ -44,7 +44,7 @@ public class AuthorisationFilter implements ContainerRequestFilter {
     }
 
     public User getUserFromToken(String token) {
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         JWTVerifier verifier = JWT.require(algorithm).build();
         try {
             DecodedJWT decodedJWT = verifier.verify(token);

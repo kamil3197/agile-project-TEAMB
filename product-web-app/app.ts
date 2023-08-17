@@ -40,7 +40,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: 'jwt_secret',
+    secret: process.env.JWT_SECRET || '',
     cookie: { maxAge: 3_600_000 },
   }),
 );
@@ -75,3 +75,4 @@ app.get('/', async (req, res) => {
   res.redirect('/job-roles');
 });
 
+export default app;

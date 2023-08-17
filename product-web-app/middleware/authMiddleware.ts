@@ -6,7 +6,7 @@ export default class AuthMiddleware {
   private secret: string;
 
   constructor() {
-    this.secret = process.env.jwt_secret || '';
+    this.secret = process.env.JWT_SECRET || '';
   }
 
   async authorisation(req: Request, res: Response, next: NextFunction) {
@@ -14,7 +14,7 @@ export default class AuthMiddleware {
       return next();
     }
 
-    const { JWT } = req.cookies;    
+    const { JWT } = req.cookies;
     if (JWT === undefined) {
       res.locals.errormessage = 'Token issue, please login.';
       return res.redirect('/auth/login');
@@ -41,7 +41,6 @@ export default class AuthMiddleware {
     try {
       axios.defaults.headers.common.Authorization = req.cookies.JWT;
       return next();
-
     } catch {
       axios.defaults.headers.common.Authorization = null;
       return next();
@@ -70,7 +69,6 @@ export default class AuthMiddleware {
 
       res.locals.isAdmin = isAdmin;
       return next();
-      
     } catch {
       res.locals.isAdmin = false;
       return next();

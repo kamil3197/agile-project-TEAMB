@@ -60,7 +60,7 @@ public class AuthService {
         if (!authResult) {
             throw new WrongPasswordException();
         }
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         long now = dateService.getCurrentTime();
         long expiry = now + 3_600_000;
         return JWT.create()

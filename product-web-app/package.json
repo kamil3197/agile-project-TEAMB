@@ -13,7 +13,9 @@
     "dev": "nodemon --watch . --ext ts --exec \"npm run start\""
   },
   "dependencies": {
+    "@types/chai-http": "^4.2.0",
     "axios": "^1.4.0",
+    "chai-http": "^4.4.0",
     "cookie": "^0.5.0",
     "cookie-parser": "latest",
     "dotenv": "^16.3.1",

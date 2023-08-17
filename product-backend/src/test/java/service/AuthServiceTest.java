@@ -106,7 +106,7 @@ public class AuthServiceTest {
                    WrongPasswordException {
 
         long currentTime = System.currentTimeMillis();
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(clientCredentials.getEmail())
                 .withClaim("user_id", user.getId())

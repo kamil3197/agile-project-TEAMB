@@ -37,7 +37,7 @@ public class AuthorisationFilterTest {
 
     @Test
     void getUserFromToken_returnUser_whenTokenIsValid(){
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(userAdmin.getEmail())
                 .withClaim("user_id", userAdmin.getId())
@@ -62,7 +62,7 @@ public class AuthorisationFilterTest {
 
     @Test
     void isValidAccessToken_returnTrue_whenTokenValid() throws FailedToGetUserException {
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(userAdmin.getEmail())
                 .withClaim("user_id", userAdmin.getId())
@@ -77,7 +77,7 @@ public class AuthorisationFilterTest {
 
     @Test
     void isValidAccessToken_returnFalse_whenTokenExpired() throws FailedToGetUserException {
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(userAdmin.getEmail())
                 .withClaim("user_id", userAdmin.getId())
@@ -93,7 +93,7 @@ public class AuthorisationFilterTest {
 
     @Test
     void isValidAccessToken_returnFalse_whenUserNotInDataBase() throws FailedToGetUserException {
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(userAdmin.getEmail())
                 .withClaim("user_id", userAdmin.getId())
@@ -109,7 +109,7 @@ public class AuthorisationFilterTest {
 
     @Test
     void isValidAccessToken_returnFalse_whenWrongUserRole() throws FailedToGetUserException {
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(userEmployee.getEmail())
                 .withClaim("user_id", userEmployee.getId())
@@ -125,7 +125,7 @@ public class AuthorisationFilterTest {
 
     @Test
     void isValidAccessToken_returnFalse_whenWrongUserId() throws FailedToGetUserException {
-        Algorithm algorithm = Algorithm.HMAC256(System.getenv("jwt_secret"));
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(userEmployee.getEmail())
                 .withClaim("user_id", 15)
