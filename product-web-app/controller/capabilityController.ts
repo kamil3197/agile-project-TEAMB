@@ -18,8 +18,8 @@ export default class CapabilityController {
       try {
         if (data.capabilityName && data.capabilityName !== undefined) {
           const sanitizedData: Capability = {
-            capabilityName: xss(data.capabilityName),
             leadName: xss(data.leadName),
+            capabilityName: xss(data.capabilityName),
             leadPhoto: xss(data.leadPhoto),
             leadMessage: xss(data.leadMessage),
           };
