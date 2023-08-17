@@ -3,6 +3,12 @@ import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export default class AuthMiddleware {
+  private secret: string | undefined;
+
+  constructor () {
+    this.secret = process.env.jwt_secret;
+  }
+
   async authorisation(req: Request, res: Response, next: NextFunction) {
     // console.log("***********************************************")
     // console.log(req.path)
@@ -11,16 +17,15 @@ export default class AuthMiddleware {
       return next();
     }
 
-    const secret = process.env.jwt_secret;
     const { JWT } = req.cookies;
     // console.log("***********************************************")
     // console.log(JWT)
-    if (JWT === undefined || secret === undefined) {
+    if (JWT === undefined || this.secret === undefined) {
       res.locals.errormessage = 'Token issue, please login.';
       return res.redirect('/auth/login');
     }
 
-    const decoded: JwtPayload | string = jwt.verify(JWT, secret);
+    const decoded: JwtPayload | string = jwt.verify(JWT, this.secret);
     // console.log("***********************************************")
     // console.log(decoded)
     if (typeof decoded !== 'object' || !decoded.user_role) {
@@ -36,7 +41,7 @@ export default class AuthMiddleware {
     if (req.path.split('/')[1] === 'admin') {
       if (decoded.user_role !== 'Admin') {
         res.locals.errormessage = 'Admin privilege required';
-        return res.redirect('/home');
+        return res.redirect('/');
       }
       axios.defaults.headers.common.requireAdmin = true;
     }
@@ -58,9 +63,8 @@ export default class AuthMiddleware {
     try {
       const { JWT } = req.cookies;
       let decoded: JwtPayload | string = '';
-      const secret = process.env.jwt_secret;
-      if (JWT !== undefined && secret !== undefined) {
-        decoded = jwt.verify(JWT, secret);
+      if (JWT !== undefined && this.secret !== undefined) {
+        decoded = jwt.verify(JWT, this.secret);
       }
 
       if (typeof decoded !== 'object' || !decoded.user_role) {
