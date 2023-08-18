@@ -10,30 +10,33 @@ export default class AuthMiddleware {
   }
 
   async authorisation(req: Request, res: Response, next: NextFunction) {
+    console.log('jeden')
     if (req.path === '/auth/login' || req.path === '/auth/register') {
       return next();
     }
-
+    console.log('dwa')
+    console.log(req.cookies)
     const { JWT } = req.cookies;
-    if (JWT === undefined) {
-      res.locals.errormessage = 'Token issue, please login.';
+    if (JWT === undefined || JWT === null) {
+      console.log('dwaaaaa')
+      // res.locals.errormessage = 'Token issue, please login.';
       return res.redirect('/auth/login');
     }
-
+    console.log('trzy')
     const decoded: JwtPayload | string = jwt.verify(JWT, this.secret);
     if (typeof decoded !== 'object' || !decoded.user_role) {
-      res.locals.errormessage = 'Decode issue, please login.';
+      // res.locals.errormessage = 'Decode issue, please login.';
       return res.redirect('/auth/login');
     }
-
+    console.log('cztery')
     if (req.path.split('/')[1] === 'admin') {
       if (decoded.user_role !== 'Admin') {
-        res.locals.errormessage = 'Admin privilege required';
+        // res.locals.errormessage = 'Admin privilege required';
         return res.redirect('/');
       }
       axios.defaults.headers.common.requireAdmin = true;
     }
-
+    console.log('koniec')
     return next();
   }
 
