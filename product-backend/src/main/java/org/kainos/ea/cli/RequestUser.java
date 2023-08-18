@@ -2,10 +2,16 @@ package org.kainos.ea.cli;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 
 public class RequestUser {
+
+    @ApiModelProperty(example = "tester@kainos.com", required = true)
     private String email;
+
+    @ApiModelProperty(example = "Test123!", required = true)
     private String password;
+    @ApiModelProperty(example = "Employee", required = true)
     private String role;
 
     public String getEmail() {

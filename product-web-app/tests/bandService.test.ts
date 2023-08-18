@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import chai from 'chai';
 import BandService from '../service/bandService.js';
@@ -10,6 +10,12 @@ const band = {
 
   responsibilities: 'Chai',
 };
+
+const getBand = {
+  id: 10,
+  name: "manager",
+  level: 5
+}
 
 const { expect } = chai;
 const bandService = new BandService();
@@ -52,6 +58,36 @@ describe('bandService', () => {
 
       const response = await bandService.addBand(band);
       expect(response).to.equal(201);
+    });
+  });
+
+  describe('getAllBands', () => {
+    it('should return all bands from response', async () => {
+      const mock = new MockAdapter(axios);
+      const data = [getBand];
+      mock.onGet('http://mock.pl/admin/getBand').reply(200, data);
+      const results = await bandService.getAllBands();
+      expect(results[0]).to.deep.equal(getBand);
+    });
+
+    it('should throw exception when 500 error returned from axios', async () => {
+      const mock = new MockAdapter(axios);
+      mock.onGet('http://mock.pl/admin/getBand').reply(500);
+      let error: any;
+      try {
+        await bandService.getAllBands();
+      } catch (e: unknown) {
+        error = e as AxiosError;
+      }
+      expect(error.message).to.equal('Error Band Service');
+    });
+
+    it('should return empty list/array when such is received', async () => {
+      const mock = new MockAdapter(axios);
+      const data: any[] = [];
+      mock.onGet('http://mock.pl/admin/getBand').reply(200, data);
+      const results = await bandService.getAllBands();
+      expect(results).to.deep.equal([]);
     });
   });
 });

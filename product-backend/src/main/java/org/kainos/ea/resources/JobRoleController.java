@@ -1,6 +1,9 @@
 package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.kainos.ea.api.JobRoleService;
 import org.kainos.ea.cli.AddJobRole;
 import org.kainos.ea.client.FailedToCreateJobRoleException;
@@ -25,6 +28,13 @@ public class JobRoleController {
     @GET
     @Path("/job-roles")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "View the list of all job roles")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched the list of roles from the " +
+                    "database"),
+            @ApiResponse(code = 404, message = "Failed to fetched the list of roles from the database"),
+            @ApiResponse(code = 500, message = "Failed to connect with the database")
+    })
     public Response getAllJobRoles() {
         try {
             return Response.ok(jobRoleService.getAllJobRoles()).build();
@@ -37,6 +47,12 @@ public class JobRoleController {
     @POST
     @Path("/admin/job-roles")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Creates a new job role")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successfully added new job role to the database"),
+            @ApiResponse(code = 400, message = "Failed to add new job role to the database"),
+            @ApiResponse(code = 500, message = "Failed to connect with the database")
+    })
     public Response createJobRole(@Valid AddJobRole addJobRole) {
         try {
             OptionalInt createdRoleId = jobRoleService.createJobRole(addJobRole);

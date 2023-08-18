@@ -12,6 +12,7 @@ import BandController from './controller/bandController.js';
 import JobRolesController from './controller/JobRolesController.js';
 import AuthController from './controller/authController.js';
 import AuthMiddleware from './middleware/authMiddleware.js';
+import CapabilityController from './controller/capabilityController.js';
 
 const dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -66,6 +67,8 @@ const jobRolesController = new JobRolesController();
 jobRolesController.init(app);
 new JobSpecificationController().init(app);
 new AuthController().init(app);
+new CapabilityController().init(app);
+
 app.listen(3000, () => {
   // eslint-disable-next-line no-console
   console.log('Server started on port 3000');
@@ -75,4 +78,3 @@ app.get('/', async (req, res) => {
   res.redirect('/job-roles');
 });
 
-export default app;
