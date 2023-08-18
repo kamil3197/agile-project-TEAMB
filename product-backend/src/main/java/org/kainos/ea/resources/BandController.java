@@ -53,6 +53,12 @@ public class BandController {
     @GET
     @Path("/admin/getBand")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "View the band")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched the band from the database"),
+            @ApiResponse(code = 404, message = "Failed to fetched the band from the database"),
+            @ApiResponse(code = 500, message = "Failed to connect with the database")
+    })
     public Response getAllBands() throws FailedToGetBandsException, SQLException {
         try {
             return Response.ok(bandService.getAllBands()).build();
