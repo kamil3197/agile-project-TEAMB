@@ -13,9 +13,9 @@ const band = {
 
 const getBand = {
   id: 10,
-  name: "manager",
-  level: 5
-}
+  name: 'manager',
+  level: 5,
+};
 
 const { expect } = chai;
 const bandService = new BandService();

@@ -8,6 +8,8 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
+
+import org.kainos.ea.utils.AuthorisationFilter;
 import org.kainos.ea.resources.*;
 
 public class DropwizardWebServiceApplication extends Application<DropwizardWebServiceConfiguration> {
@@ -34,6 +36,7 @@ public class DropwizardWebServiceApplication extends Application<DropwizardWebSe
     @Override
     public void run(final DropwizardWebServiceConfiguration configuration,
                     final Environment environment) {
+        environment.jersey().register(new AuthorisationFilter());
         environment.jersey().register(new JobSpecificationController());
         environment.jersey().register(new AuthController());
         environment.jersey().register(RolesAllowedDynamicFeature.class);

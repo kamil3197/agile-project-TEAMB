@@ -3,7 +3,7 @@ import User from '../model/register.js';
 import registerValidator from '../validator/registrationValidator.js';
 import Login from '../model/login.js';
 
-class AuthService {
+export default class AuthService {
   private API_URL: String;
 
   private validator: any;
@@ -33,5 +33,3 @@ class AuthService {
     }
   }
 }
-
-export default AuthService;

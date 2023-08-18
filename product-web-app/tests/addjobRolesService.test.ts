@@ -52,7 +52,7 @@ describe('JobRoleService', () => {
       try {
         await jobRolesService.createJobRoles(addJobRole);
       } catch {
-        assert.fail("exception shouldn't be thrown");
+        assert.fail("exception shouldn' be thrown");
       }
     });
   });

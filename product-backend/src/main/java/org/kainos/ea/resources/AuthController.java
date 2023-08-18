@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.kainos.ea.api.AuthService;
-import org.kainos.ea.api.DateService;
+import org.kainos.ea.utils.DateService;
 import org.kainos.ea.cli.Login;
 import org.kainos.ea.cli.RequestUser;
 import org.kainos.ea.client.*;
@@ -17,7 +17,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import java.util.logging.Logger;
 

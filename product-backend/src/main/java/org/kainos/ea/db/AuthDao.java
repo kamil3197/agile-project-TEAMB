@@ -32,28 +32,6 @@ public class AuthDao extends DatabaseConnector {
         return -1;
     }
 
-
-    // WILL BE USED WITH AUTHORISATION TICKET //
-    public Token getToken(String email) throws FailedToGetTokenException {
-        try (Connection con = DatabaseConnector.getConnection()) {
-            String query = "SELECT id, email, token, expiry FROM Tokens WHERE email = ?;";
-            PreparedStatement st = con.prepareStatement(query);
-            st.setString(1, email);
-            ResultSet rs = st.executeQuery();
-            Token token = null;
-            while (rs.next()) {
-                token = new Token(rs.getInt("id"),
-                        rs.getString("email"),
-                        rs.getString("token"),
-                        rs.getTimestamp("expiry")
-                );
-            }
-            return token;
-        } catch (SQLException e) {
-            throw new FailedToGetTokenException();
-        }
-    }
-
     public User getUser(String email) throws FailedToGetUserException {
         try (Connection con = DatabaseConnector.getConnection()) {
             String query = "SELECT id, email, password, role FROM `User` WHERE email = ? ;";

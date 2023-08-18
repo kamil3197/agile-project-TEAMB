@@ -18,11 +18,12 @@
     {{title}}
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {% if role === "Admin" %} {% endif %}
-    <a class="dropdown-item" href="/job-roles">Job Roles</a>
-    <a class="dropdown-item" href="/admin/add-band">Add band</a>
-    <a class="dropdown-item" href="/capability-leads">View Capabilities</a>
-    <a class="dropdown-item" href="/admin/job-roles">Add Job Roles</a>
+    {% if (isAdmin) %} 
+      <a class="dropdown-item" href="/admin/add-band">Add band</a>
+      <a class="dropdown-item" href="/admin/job-roles">Add Job Roles</a>
+    {% endif %}
+      <a class="dropdown-item" href="/job-roles">Job Roles</a>
+      <a class="dropdown-item" href="/capability-leads">View Capabilities</a>
   </div>
 </nav>
 

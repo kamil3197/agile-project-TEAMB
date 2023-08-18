@@ -5,7 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.kainos.ea.api.AuthService;
-import org.kainos.ea.api.DateService;
+import org.kainos.ea.utils.DateService;
 import org.kainos.ea.cli.Login;
 import org.kainos.ea.cli.RequestUser;
 import org.kainos.ea.cli.User;
@@ -22,7 +22,6 @@ import java.util.Date;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -107,11 +106,10 @@ public class AuthServiceTest {
                    WrongPasswordException {
 
         long currentTime = System.currentTimeMillis();
-        Algorithm algorithm = Algorithm.HMAC256("NOT_HARDCODED_SECRET");
+        Algorithm algorithm = Algorithm.HMAC256(System.getenv("JWT_SECRET"));
         String jwtToken = JWT.create()
                 .withSubject(clientCredentials.getEmail())
                 .withClaim("user_id", user.getId())
-                .withClaim("user_email", user.getEmail())
                 .withClaim("user_role", user.getRole())
                 .withIssuedAt(new Date(currentTime))
                 .withExpiresAt(new Date(currentTime + 3_600_000))
