@@ -1,6 +1,9 @@
 package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.client.FailedToGetCapabilitiesException;
 import org.kainos.ea.db.CapabilityDao;
@@ -21,6 +24,13 @@ public class CapabilityController {
     @GET
     @Path("/capability-leads")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "View the list of all capabilities and the leads")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched the list of capabilities and" +
+                    " the leads from the database"),
+            @ApiResponse(code = 404, message = "Failed to fetched the list of capabilities and the leads from the database"),
+            @ApiResponse(code = 500, message = "Failed to connect with the database")
+    })
     public Response getAllCapabilities() {
         try {
             return Response.ok(capabilityService.getAllCapabilities()).build();
