@@ -77,4 +77,3 @@ app.listen(3000, () => {
 app.get('/', async (req, res) => {
   res.redirect('/job-roles');
 });
-
